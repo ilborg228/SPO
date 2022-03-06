@@ -1,32 +1,38 @@
 package com.example.spo.model;
 
-public class Binary {
+public class Binary implements Element{
 
     private String login;
     private Long hashcode;
     private String email;
 
-    public String getLogin() {
-        return login;
+    @Override
+    public Object getFirstField() {
+        return null;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    @Override
+    public Object getSecondField() {
+        return null;
     }
 
-    public Long getHashcode() {
-        return hashcode;
+    @Override
+    public Object getThirdField() {
+        return null;
     }
 
-    public void setHashcode(Long hashcode) {
-        this.hashcode = hashcode;
+    @Override
+    public void setFirstField(Object e) {
+
     }
 
-    public String getEmail() {
-        return email;
+    @Override
+    public void setSecondField(Object e) {
+
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public void setThirdField(Object e) {
+
     }
 }
