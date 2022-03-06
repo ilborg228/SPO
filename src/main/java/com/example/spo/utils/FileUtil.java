@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface FileUtil {
 
-    List<Element> open(String fileName);
+    List<Element> open(String path);
 
     void save(List<Element> elements, String path) throws IOException;
 

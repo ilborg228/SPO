@@ -20,11 +20,11 @@ public class CsvFileUtil implements FileUtil{
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while (br.ready()) {
                 String[] st = br.readLine().split(",");
-                CSV csv = new CSV();
-                csv.setFirstField(st[0]);
-                csv.setSecondField(st[1]);
-                csv.setThirdField(st[2]);
-                elements.add(csv);
+                Element e = new CSV();
+                e.setFirstField(st[0]);
+                e.setSecondField(st[1]);
+                e.setThirdField(st[2]);
+                elements.add(e);
             }
         } catch (IOException e) {
             //TODO

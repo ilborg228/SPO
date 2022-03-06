@@ -38,4 +38,13 @@ public class CSV implements Element{
     public void setThirdField(Object e) {
         this.creation = (String) e;
     }
+
+    @Override
+    public String toString() {
+        return "CSV{" +
+                "fileName='" + fileName + '\'' +
+                ", version='" + version + '\'' +
+                ", creation='" + creation + '\'' +
+                '}';
+    }
 }
