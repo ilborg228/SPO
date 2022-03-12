@@ -5,6 +5,6 @@ public class JNI {
         System.loadLibrary("native");
     }
 
-    private native int OR(int a, int b);
-    private native int MULTIPLY(int a, int b);
+    public native int OR(int a, int b);
+    public native int MULTIPLY(int a, int b);
 }
