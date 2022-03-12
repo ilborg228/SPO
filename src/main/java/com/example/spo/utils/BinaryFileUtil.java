@@ -1,7 +1,6 @@
 package com.example.spo.utils;
 
 import com.example.spo.model.Binary;
-import com.example.spo.model.CSV;
 import com.example.spo.model.Element;
 
 import java.io.*;
