@@ -3,6 +3,6 @@ module com.example.spo {
     requires javafx.fxml;
 
 
-    opens com.example.spo to javafx.fxml;
-    exports com.example.spo;
+    opens com.example.spo.presenter to javafx.fxml;
+    exports com.example.spo.presenter;
 }
