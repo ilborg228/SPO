@@ -1,4 +1,4 @@
-package com.example.spo;
+package com.example.spo.presenter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
