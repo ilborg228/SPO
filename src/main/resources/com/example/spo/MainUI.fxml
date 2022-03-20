@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="64.0" prefWidth="700.0" style="-fx-background-color: 2E3348;"
             xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.spo.UiPresenters.MainUiPresenter">
+            fx:controller="com.example.spo.MainUiPresenter">
     <ButtonBar layoutX="25.0" layoutY="11.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="42.0" prefWidth="718.0">
       <buttons>
           <Button fx:id="Author_Button" mnemonicParsing="false" text="Об авторах"/>

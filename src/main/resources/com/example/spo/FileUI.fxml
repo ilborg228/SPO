@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="274.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spo.UiPresenters.LowLevelFunctionsUiPresenter">
+<AnchorPane prefHeight="400.0" prefWidth="274.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spo.presenter.LowLevelFunctionsUiPresenter">
    <children>
       <ChoiceBox id="Filetype_Selector" layoutX="14.0" layoutY="14.0" prefWidth="150.0" />
       <Button layoutX="14.0" layoutY="48.0" mnemonicParsing="false" text="Открыть" />

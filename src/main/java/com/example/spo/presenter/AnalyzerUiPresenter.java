@@ -1,4 +1,4 @@
-package com.example.spo.UiPresenters;
+package com.example.spo.presenter;
 
 public class AnalyzerUiPresenter {
 }
