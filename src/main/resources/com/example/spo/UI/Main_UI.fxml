@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="64.0" prefWidth="700.0" style="-fx-background-color: 2E3348;"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.spo.UI_Controllers.Main_UI_Controller">
+    <ButtonBar layoutX="25.0" layoutY="11.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="42.0" prefWidth="718.0">
+      <buttons>
+          <Button fx:id="Author_Button" mnemonicParsing="false" text="Об авторах"/>
+          <Button fx:id="File_Button" mnemonicParsing="false" prefHeight="25.0" text="Работа с файлами"/>
+          <Button fx:id="C_Button" mnemonicParsing="false" prefHeight="25.0" text="Низкоуровневые функции"/>
+          <Button fx:id="Analyze_Button" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0"
+                  text="Анализаторы"/>
+      </buttons>
+    </ButtonBar>
+</AnchorPane>
