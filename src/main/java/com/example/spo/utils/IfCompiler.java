@@ -13,7 +13,7 @@ public class IfCompiler {
         javaCode.append("int k=-1;");
         javaCode.append("if (").append(code.getCondition()).append("){");
         javaCode.append(code.getBody());
-        javaCode.append("k = 1;}");
+        javaCode.append(" k = 1;}");
         if(code.getBodyElse()!=null){
             javaCode.append("else{k=0;").append(code.getBodyElse()).append("}");
         }
