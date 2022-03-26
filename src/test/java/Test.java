@@ -6,7 +6,12 @@ import com.example.spo.utils.IfCompiler;
 public class Test {
     public static void main(String[] args) throws Exception {
         System.out.println(IfCompiler.execute("false"));
-        MyCode m = ForAnalyzer.getTargetCode("");
-        System.out.println(ForCompiler.execute(m));
+        MyCode m = ForAnalyzer.getTargetCode("for(int i=0;i<8;i++){int b;break;}");
+        try{
+            System.out.println(ForCompiler.execute(m));
+        }
+        catch (Exception e){
+            System.out.println("j");
+        }
     }
 }

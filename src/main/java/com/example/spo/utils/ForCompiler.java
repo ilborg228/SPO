@@ -13,8 +13,8 @@ public class ForCompiler{
         javaCode.append("public int run() {");
         javaCode.append("int k = 0;");
         javaCode.append("for (").append(code.getCondition()).append("){");
-        javaCode.append(code.getBody());
-        javaCode.append("k++;}return k;}}");
+        javaCode.append("k++;").append(code.getBody());
+        javaCode.append("}return k;}}");
 
         Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode.toString());
         CodeSample runner = (CodeSample) aClass.newInstance();
