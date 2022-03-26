@@ -1,5 +1,8 @@
 package com.example.spo.model;
 
+import lombok.Builder;
+
+@Builder
 public class Binary implements Element{
 
     /**
