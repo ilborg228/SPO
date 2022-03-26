@@ -1,9 +1,8 @@
 package com.example.spo.utils;
 
-public class IfAnalyzer implements StringAnalyzer{
+public class IfAnalyzer{
     //TODO
-    @Override
-    public String getTargetCode(String baseString) {
+    public static String getTargetCode(String baseString) {
         return null;
     }
 }
