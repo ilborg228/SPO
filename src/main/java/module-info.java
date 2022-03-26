@@ -8,4 +8,7 @@ module com.example.spo {
     exports com.example.spo;
     exports com.example.spo.presenter;
     opens com.example.spo.presenter to javafx.fxml;
+    requires org.hibernate.orm.core;
+    requires java.sql;
+    requires java.persistence;
 }
