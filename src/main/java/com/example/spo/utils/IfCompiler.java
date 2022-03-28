@@ -3,6 +3,9 @@ package com.example.spo.utils;
 import com.example.spo.model.MyCode;
 import net.openhft.compiler.CompilerUtils;
 
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+
 public class IfCompiler {
     public static int execute(MyCode code) throws Exception{
         String className = "com.example.spo.utils.MyClass2";
@@ -18,7 +21,10 @@ public class IfCompiler {
 //            javaCode.append("else{k=0;").append(code.getBodyElse()).append("}");
 //        }
 //        javaCode.append("return k;}}");
-
+        String bodyElse = "";
+        if(code.getBodyElse() != null){
+            bodyElse = "else {"+code.getBodyElse()+"k = 1;}";
+        }
         String javaCode = "package com.example.spo.utils;\n" +
                 "\n" +
                 "import java.io.*;\n" +
@@ -26,7 +32,7 @@ public class IfCompiler {
                 "public class MyClass2 implements Runnable\n" +
                 "{\n" +
                 "    public void run() {\n" +
-                "        int k=-1;if (5<9){int b; k = 1;}\n" +
+                "        int k=-1;if ("+code.getCondition()+"){"+code.getBody()+"k = 0;}\n" +bodyElse+
                 "        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(new File(\"data.txt\")))) {\n" +
                 "            dos.writeInt(k);\n" +
                 "        } catch (FileNotFoundException e) {\n" +
@@ -41,6 +47,8 @@ public class IfCompiler {
         Runnable runner = (Runnable) aClass.newInstance();
         runner.run();
 
-        return 0;
+        DataInputStream dos = new DataInputStream(new FileInputStream("data.txt"));
+
+        return dos.readInt();
     }
 }

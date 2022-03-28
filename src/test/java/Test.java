@@ -6,7 +6,7 @@ import com.example.spo.utils.IfCompiler;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        MyCode targetCode = IfAnalyzer.getTargetCode("if(5<9){int b;}");
+        MyCode targetCode = IfAnalyzer.getTargetCode("if(5<3){int b;}else{int c;}");
         System.out.println(IfCompiler.execute(targetCode));
         MyCode m = ForAnalyzer.getTargetCode("for(int i=0;i<8;i++){}");
         try{

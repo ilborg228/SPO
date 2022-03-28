@@ -3,21 +3,36 @@ package com.example.spo.utils;
 import com.example.spo.model.MyCode;
 import net.openhft.compiler.CompilerUtils;
 
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+
 public class ForCompiler{
 
     public static int execute(MyCode code) throws Exception {
         String className = "com.example.spo.utils.MyClass";
         StringBuilder javaCode = new StringBuilder();
-        javaCode.append("package com.example.spo.utils;");
-        javaCode.append("public class MyClass implements CodeSample {");
-        javaCode.append("public int run() {");
-        javaCode.append("int k = 0;");
-        javaCode.append("for (").append(code.getCondition()).append("){");
+        javaCode.append("package com.example.spo.utils;\n");
+        javaCode.append("import java.io.*;\n");
+        javaCode.append("public class MyClass implements Runnable {\n");
+        javaCode.append("public void run() {\n");
+        javaCode.append("int k = 0;\n");
+        javaCode.append("for (").append(code.getCondition()).append("){\n");
         javaCode.append("k++;").append(code.getBody());
-        javaCode.append("}return k;}}");
+        javaCode.append("\n}");
+        javaCode.append("\ntry (DataOutputStream dos = new DataOutputStream(new FileOutputStream(new File(\"data1.txt\")))){\n");
+        javaCode.append("dos.writeInt(k);").append("\n}");
+        javaCode.append("catch (FileNotFoundException e) {\n");
+        javaCode.append("e.printStackTrace();\n").append("\n}");
+        javaCode.append("catch (IOException e) {\n");
+        javaCode.append("e.printStackTrace();\n}");
+        javaCode.append("\n}");
+        javaCode.append("\n}");
 
         Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode.toString());
-        CodeSample runner = (CodeSample) aClass.newInstance();
-        return runner.run();
+        Runnable runner = (Runnable) aClass.newInstance();
+        runner.run();
+        DataInputStream dos = new DataInputStream(new FileInputStream("data1.txt"));
+
+        return dos.readInt();
     }
 }
