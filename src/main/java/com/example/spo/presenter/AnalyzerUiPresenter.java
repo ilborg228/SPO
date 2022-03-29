@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 public class AnalyzerUiPresenter {
 
     ObservableList<String> ComboBoxList = FXCollections.observableArrayList("IF", "FOR");
+    private int value = 0;
     @FXML
     private ChoiceBox<String> ComboBox;
 
@@ -38,14 +39,15 @@ public class AnalyzerUiPresenter {
             }
         });
         LaunchButton.setOnAction(actionEvent -> {
+            MyCode myCode = null;
             if (ComboBox.getValue() == "IF") {
-                MyCode myCode = null;
                 try {
                     myCode = IfAnalyzer.getTargetCode(InputTextField.getText());
-                    int i = IfCompiler.execute(myCode);
+                    int i = IfCompiler.execute(myCode,value);
+                    value++;
                     if (i == 0) {
                         ResultTextField.setText(myCode.getCondition());
-                    } else if (i == -1) {
+                    } else if (i == 1) {
                         ResultTextField.setText("!" + myCode.getCondition());
                     } else {
                         ResultTextField.setText("Никакое условие не выполняется.");
@@ -54,10 +56,10 @@ public class AnalyzerUiPresenter {
                     ResultTextField.setText(e.getMessage());
                 }
             } else if (ComboBox.getValue() == "FOR") {
-                MyCode myCode = null;
                 try {
                     myCode = ForAnalyzer.getTargetCode(InputTextField.getText());
-                    int i = ForCompiler.execute(myCode);
+                    int i = ForCompiler.execute(myCode,value);
+                    value++;
                     ResultTextField.setText("Цикл выполнился: " + i + " раз");
                 } catch (Exception e) {
                     ResultTextField.setText(e.getMessage());

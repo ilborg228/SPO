@@ -7,8 +7,8 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 
 public class IfCompiler {
-    public static int execute(MyCode code) throws Exception{
-        String className = "com.example.spo.utils.MyClass2";
+    public static int execute(MyCode code,int value) throws Exception{
+        String className = "com.example.spo.utils.MyClass2"+value;
 //        StringBuilder javaCode = new StringBuilder();
 //        javaCode.append("package com.example.spo.utils;");
 //        javaCode.append("public class MyClass2 implements CodeSample {");
@@ -29,7 +29,7 @@ public class IfCompiler {
                 "\n" +
                 "import java.io.*;\n" +
                 "\n" +
-                "public class MyClass2 implements Runnable\n" +
+                "public class MyClass2"+value+" implements Runnable\n" +
                 "{\n" +
                 "    public void run() {\n" +
                 "        int k=-1;if ("+code.getCondition()+"){"+code.getBody()+"k = 0;}\n" +bodyElse+

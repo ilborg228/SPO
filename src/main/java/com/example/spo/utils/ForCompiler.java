@@ -8,12 +8,12 @@ import java.io.FileInputStream;
 
 public class ForCompiler{
 
-    public static int execute(MyCode code) throws Exception {
-        String className = "com.example.spo.utils.MyClass";
+    public static int execute(MyCode code,int value) throws Exception {
+        String className = "com.example.spo.utils.MyClass"+value;
         StringBuilder javaCode = new StringBuilder();
         javaCode.append("package com.example.spo.utils;\n");
         javaCode.append("import java.io.*;\n");
-        javaCode.append("public class MyClass implements Runnable {\n");
+        javaCode.append("public class MyClass").append(value).append(" implements Runnable {\n");
         javaCode.append("public void run() {\n");
         javaCode.append("int k = 0;\n");
         javaCode.append("for (").append(code.getCondition()).append("){\n");
