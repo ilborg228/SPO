@@ -13,6 +13,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.util.Objects;
+
 public class AnalyzerUiPresenter {
 
     ObservableList<String> ComboBoxList = FXCollections.observableArrayList("IF", "FOR");
@@ -40,7 +42,7 @@ public class AnalyzerUiPresenter {
         });
         LaunchButton.setOnAction(actionEvent -> {
             MyCode myCode = null;
-            if (ComboBox.getValue() == "IF") {
+            if (Objects.equals(ComboBox.getValue(), "IF")) {
                 try {
                     myCode = IfAnalyzer.getTargetCode(InputTextField.getText());
                     int i = IfCompiler.execute(myCode,value);
@@ -53,16 +55,16 @@ public class AnalyzerUiPresenter {
                         ResultTextField.setText("Никакое условие не выполняется.");
                     }
                 } catch (Exception e) {
-                    ResultTextField.setText(e.getMessage());
+                    ResultTextField.setText("Ошибка в коде");
                 }
-            } else if (ComboBox.getValue() == "FOR") {
+            } else if (Objects.equals(ComboBox.getValue(), "FOR")) {
                 try {
                     myCode = ForAnalyzer.getTargetCode(InputTextField.getText());
                     int i = ForCompiler.execute(myCode,value);
                     value++;
                     ResultTextField.setText("Цикл выполнился: " + i + " раз");
                 } catch (Exception e) {
-                    ResultTextField.setText(e.getMessage());
+                    ResultTextField.setText("Ошибка в коде");
                 }
             }
         });
