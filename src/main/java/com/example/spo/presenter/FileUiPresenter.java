@@ -3,7 +3,6 @@ package com.example.spo.presenter;
 import com.example.spo.HelloApplication;
 import com.example.spo.model.Binary;
 import com.example.spo.model.CSV;
-import com.example.spo.model.Element;
 import com.example.spo.utils.BinaryFileUtil;
 import com.example.spo.utils.CsvFileUtil;
 import javafx.collections.FXCollections;
@@ -23,8 +22,8 @@ import java.util.List;
 
 public class FileUiPresenter {
     ObservableList<String> ComboBoxList = FXCollections.observableArrayList("CSV", "Binary");
-    List<Element> openedCSVFile;
-    List<Element> openedBinaryFile;
+    List<CSV> openedCSVFile;
+    List<Binary> openedBinaryFile;
 
 
     @FXML
@@ -59,10 +58,10 @@ public class FileUiPresenter {
                     openedCSVFile = csvFileUtil.open(file.getPath());
                     String out = "№|Имя файла|Версия файла|Дата создания\n";
                     for (int i = 0; i < openedCSVFile.size(); i++) {
-                        Element openedFileElement = openedCSVFile.get(i);
+                        CSV openedFileElement = openedCSVFile.get(i);
                         int Fixer = i + 1;
-                        out = out + Fixer + "|" + openedFileElement.getFirstField() + "|" + openedFileElement.getSecondField() + "|" +
-                                openedFileElement.getThirdField() + "\n";
+                        out = out + Fixer + "|" + openedFileElement.getFileName() + "|" + openedFileElement.getVersion() + "|" +
+                                openedFileElement.getCreation() + "\n";
                     }
                     ResultTextField.setText(out);
                 }
@@ -74,10 +73,10 @@ public class FileUiPresenter {
                     openedBinaryFile = binaryFileUtil.open(file.getPath());
                     String out = "№|Логин|Хэш-код пароля|email\n";
                     for (int i = 0; i < openedBinaryFile.size(); i++) {
-                        Element openedFileElement = openedBinaryFile.get(i);
+                        Binary openedFileElement = openedBinaryFile.get(i);
                         int Fixer = i + 1;
-                        out = out + Fixer + "|" + openedFileElement.getFirstField() + "|" + openedFileElement.getSecondField() + "|" +
-                                openedFileElement.getThirdField() + "\n";
+                        out = out + Fixer + "|" + openedFileElement.getLogin() + "|" + openedFileElement.getHashcode() + "|" +
+                                openedFileElement.getEmail() + "\n";
                     }
                     ResultTextField.setText(out);
                 }
@@ -94,36 +93,36 @@ public class FileUiPresenter {
                     InputUiPresenter inputUiPresenter = fxmlLoader.getController();
                     stage.showAndWait();
                     if (ComboBox.getValue() == "CSV") {
-                        Element element = new CSV();
-                        element.setFirstField(inputUiPresenter.getFirstField());
-                        element.setSecondField(inputUiPresenter.getSecondField());
-                        element.setThirdField(inputUiPresenter.getThirdField());
-                        if(element.getFirstField() != null && element.getSecondField() != null &&
-                                element.getThirdField() != null){
+                        CSV element = new CSV();
+                        element.setFileName(inputUiPresenter.getFirstField());
+                        element.setVersion(inputUiPresenter.getSecondField());
+                        element.setCreation(inputUiPresenter.getThirdField());
+                        if(element.getFileName() != null && element.getVersion() != null &&
+                                element.getCreation() != null){
                             openedCSVFile.add(element);
                             String out = "№|Имя файла|Версия файла|Дата создания\n";
                             for (int i = 0; i < openedCSVFile.size(); i++) {
-                                Element openedFileElement = openedCSVFile.get(i);
+                                CSV openedFileElement = openedCSVFile.get(i);
                                 int Fixer = i + 1;
-                                out = out + Fixer + "|" + openedFileElement.getFirstField() + "|" + openedFileElement.getSecondField() + "|" +
-                                        openedFileElement.getThirdField() + "\n";
+                                out = out + Fixer + "|" + openedFileElement.getFileName() + "|" + openedFileElement.getVersion() + "|" +
+                                        openedFileElement.getCreation() + "\n";
                             }
                             ResultTextField.setText(out);
                         }
                     } else if (ComboBox.getValue() == "Binary" && isNumeric(inputUiPresenter.getSecondField())) {
-                        Element element = new Binary();
-                        element.setFirstField(inputUiPresenter.getFirstField());
-                        element.setSecondField(Long.parseLong(inputUiPresenter.getSecondField()));
-                        element.setThirdField(inputUiPresenter.getThirdField());
-                        if(element.getFirstField() != null && element.getSecondField() != null &&
-                                element.getThirdField() != null) {
+                        Binary element = new Binary();
+                        element.setLogin(inputUiPresenter.getFirstField());
+                        element.setHashcode(Long.parseLong(inputUiPresenter.getSecondField()));
+                        element.setEmail(inputUiPresenter.getThirdField());
+                        if(element.getLogin() != null && element.getHashcode() != null &&
+                                element.getEmail() != null) {
                             openedBinaryFile.add(element);
                             String out = "№|Логин|Хэш-код пароля|email\n";
                             for (int i = 0; i < openedBinaryFile.size(); i++) {
-                                Element openedFileElement = openedBinaryFile.get(i);
+                                Binary openedFileElement = openedBinaryFile.get(i);
                                 int Fixer = i + 1;
-                                out = out + Fixer + "|" + openedFileElement.getFirstField() + "|" + openedFileElement.getSecondField() + "|" +
-                                        openedFileElement.getThirdField() + "\n";
+                                out = out + Fixer + "|" + openedFileElement.getLogin() + "|" + openedFileElement.getHashcode() + "|" +
+                                        openedFileElement.getEmail() + "\n";
                             }
                             ResultTextField.setText(out);
                         }
@@ -149,20 +148,20 @@ public class FileUiPresenter {
                             openedCSVFile.remove(deleteThisNumber);
                             String out = "№|Имя файла|Версия файла|Дата создания\n";
                             for (int i = 0; i < openedCSVFile.size(); i++) {
-                                Element openedFileElement = openedCSVFile.get(i);
+                                CSV openedFileElement = openedCSVFile.get(i);
                                 int Fixer = i + 1;
-                                out = out + Fixer + "|" + openedFileElement.getFirstField() + "|" + openedFileElement.getSecondField() + "|" +
-                                        openedFileElement.getThirdField() + "\n";
+                                out = out + Fixer + "|" + openedFileElement.getFileName() + "|" + openedFileElement.getVersion() + "|" +
+                                        openedFileElement.getCreation() + "\n";
                             }
                             ResultTextField.setText(out);
                         } else if (ComboBox.getValue() == "Binary") {
                             openedBinaryFile.remove(deleteThisNumber);
                             String out = "№|Логин|Хэш-код пароля|email\n";
                             for (int i = 0; i < openedBinaryFile.size(); i++) {
-                                Element openedFileElement = openedBinaryFile.get(i);
+                                Binary openedFileElement = openedBinaryFile.get(i);
                                 int Fixer = i + 1;
-                                out = out + Fixer + "|" + openedFileElement.getFirstField() + "|" + openedFileElement.getSecondField() + "|" +
-                                        openedFileElement.getThirdField() + "\n";
+                                out = out + Fixer + "|" + openedFileElement.getLogin() + "|" + openedFileElement.getHashcode() + "|" +
+                                        openedFileElement.getEmail() + "\n";
                             }
                             ResultTextField.setText(out);
                         }
