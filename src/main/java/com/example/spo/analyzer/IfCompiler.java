@@ -1,4 +1,4 @@
-package com.example.spo.utils;
+package com.example.spo.analyzer;
 
 import com.example.spo.model.MyCode;
 import net.openhft.compiler.CompilerUtils;

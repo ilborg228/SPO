@@ -1,12 +1,11 @@
 package com.example.spo.view;
 
 import com.example.spo.model.MyCode;
-import com.example.spo.utils.ForAnalyzer;
-import com.example.spo.utils.ForCompiler;
-import com.example.spo.utils.IfAnalyzer;
-import com.example.spo.utils.IfCompiler;
+import com.example.spo.analyzer.ForAnalyzer;
+import com.example.spo.analyzer.ForCompiler;
+import com.example.spo.analyzer.IfAnalyzer;
+import com.example.spo.analyzer.IfCompiler;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
