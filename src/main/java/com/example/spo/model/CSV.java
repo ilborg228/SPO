@@ -1,18 +1,6 @@
 package com.example.spo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Date;
-
-@Table(name = "csv")
-@Entity
 public class CSV{
-
-    @Id
-    @GeneratedValue
-    private Long id;
 
     /**
      * Filname field
@@ -58,13 +46,5 @@ public class CSV{
                 ", version='" + version + '\'' +
                 ", creation='" + creation + '\'' +
                 '}';
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
     }
 }
