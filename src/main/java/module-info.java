@@ -4,6 +4,9 @@ module com.example.spo {
     requires lombok;
     requires compiler;
     requires org.slf4j;
+    requires java.sql;
+    requires org.hibernate.orm.core;
+    requires java.persistence;
 
     opens com.example.spo to javafx.fxml;
     exports com.example.spo;

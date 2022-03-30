@@ -1,23 +1,23 @@
 package com.example.spo.utils;
 
 import com.example.spo.model.Binary;
-import com.example.spo.model.Element;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BinaryFileUtil implements FileUtil{
+public class BinaryFileUtil implements FileUtil<Binary>{
+
     @Override
-    public List<Element> open(String path) {
-        List<Element> elements = new ArrayList<>();
+    public List<Binary> open(String path) {
+        List<Binary> elements = new ArrayList<>();
         File binaryFile = new File(path);
         try (DataInputStream dis = new DataInputStream(new FileInputStream(binaryFile))) {
             while (dis.available()>0){
-                Element e = new Binary();
-                e.setFirstField(dis.readUTF());
-                e.setSecondField(dis.readLong());
-                e.setThirdField(dis.readUTF());
+                Binary e = new Binary();
+                e.setLogin(dis.readUTF());
+                e.setHashcode(dis.readLong());
+                e.setEmail(dis.readUTF());
                 elements.add(e);
             }
         } catch (IOException e) {
@@ -28,16 +28,16 @@ public class BinaryFileUtil implements FileUtil{
     }
 
     @Override
-    public void save(List<Element> elements, String path) throws IOException {
+    public void save(List<Binary> elements, String path) throws IOException {
         File binaryFile = new File(path);
         if(!binaryFile.exists()){
             binaryFile.createNewFile();
         }
         try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(binaryFile))) {
-            for (Element csv: elements) {
-                dos.writeUTF((String)csv.getFirstField());
-                dos.writeLong((Long) csv.getSecondField());
-                dos.writeUTF((String)csv.getThirdField());
+            for (Binary binary: elements) {
+                dos.writeUTF(binary.getLogin());
+                dos.writeLong(binary.getHashcode());
+                dos.writeUTF(binary.getEmail());
             }
         } catch (IOException e) {
             //TODO

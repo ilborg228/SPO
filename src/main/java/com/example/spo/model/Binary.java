@@ -1,10 +1,6 @@
 package com.example.spo.model;
 
-import lombok.Builder;
-
-@Builder
-public class Binary implements Element{
-
+public class Binary{
     /**
      * Login field
      */
@@ -31,53 +27,31 @@ public class Binary implements Element{
         this.email = email;
     }
 
-    /**
-     * Zero args constructor
-     */
     public Binary() {
     }
 
-    /**
-     * @return first field
-     */
-    @Override
-    public Object getFirstField() {
+    public String getLogin() {
         return login;
     }
 
-    /**
-     * @return second field
-     */
-    @Override
-    public Object getSecondField() {
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public Long getHashcode() {
         return hashcode;
     }
 
-    /**
-     * @return third field
-     */
-    @Override
-    public Object getThirdField() {
+    public void setHashcode(Long hashcode) {
+        this.hashcode = hashcode;
+    }
+
+    public String getEmail() {
         return email;
     }
 
-    /**
-     * Set first field value
-     * @param e - first field
-     */
-    @Override
-    public void setFirstField(Object e) {
-        this.login = (String) e;
-    }
-
-    @Override
-    public void setSecondField(Object e) {
-        this.hashcode = (Long) e;
-    }
-
-    @Override
-    public void setThirdField(Object e) {
-        this.email = (String) e;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
