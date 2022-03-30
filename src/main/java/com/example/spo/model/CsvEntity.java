@@ -51,6 +51,15 @@ public class CsvEntity {
         this.creation = creation;
     }
 
+    public CsvEntity(String filename, String version, String creation) {
+        this.filename = filename;
+        this.version = version;
+        this.creation = creation;
+    }
+
+    public CsvEntity() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
