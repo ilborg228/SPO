@@ -13,4 +13,6 @@ module com.example.spo {
     opens com.example.spo.utils to javafx.fxml,javafx.controls;
     opens com.example.spo.model to javafx.fxml;
     exports com.example.spo.model;
+    exports com.example.spo.analyzer;
+    opens com.example.spo.analyzer to javafx.controls, javafx.fxml;
 }

@@ -1,8 +1,6 @@
 import com.example.spo.model.MyCode;
-import com.example.spo.utils.ForAnalyzer;
-import com.example.spo.utils.ForCompiler;
-import com.example.spo.utils.IfAnalyzer;
-import com.example.spo.utils.IfCompiler;
+import com.example.spo.analyzer.ForAnalyzer;
+import com.example.spo.analyzer.IfAnalyzer;
 
 public class Test {
     public static void main(String[] args) throws Exception {
