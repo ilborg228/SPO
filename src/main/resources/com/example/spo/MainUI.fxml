@@ -4,7 +4,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="53.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spo.presenter.MainUiPresenter">
+<AnchorPane prefHeight="53.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spo.presenter.MainPresenter">
     <ButtonBar layoutX="7.0" layoutY="6.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="42.0" prefWidth="718.0">
       <buttons>
           <Button fx:id="Author_Button" mnemonicParsing="false" text="Об авторах" />
