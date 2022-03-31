@@ -7,6 +7,7 @@ module com.example.spo {
     requires java.sql;
     requires org.hibernate.orm.core;
     requires java.persistence;
+    requires java.naming;
 
     opens com.example.spo to javafx.fxml;
     exports com.example.spo;

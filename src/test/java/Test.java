@@ -1,5 +1,6 @@
 import com.example.spo.model.CSV;
 import com.example.spo.model.CsvEntity;
+import com.example.spo.repository.Repository;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -10,31 +11,8 @@ import org.hibernate.metadata.ClassMetadata;
 import java.util.Map;
 
 public class Test {
-    private static final SessionFactory ourSessionFactory;
-
-    static {
-        try {
-            Configuration configuration = new Configuration();
-            configuration.configure();
-            ourSessionFactory = configuration.buildSessionFactory();
-        } catch (Throwable ex) {
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
-
-    public static Session getSession() throws HibernateException {
-        return ourSessionFactory.openSession();
-    }
-
-    public static void main(final String[] args) throws Exception {
-        final Session session = getSession();
-        try {
-            session.beginTransaction();
-            session.save( new CsvEntity("file","version", "creation"));
-            System.out.println("\n==============\n");
-            session.getTransaction().commit();
-        } finally {
-            session.close();
-        }
+    public static void main(String[] args) {
+        Repository<CsvEntity> repository = new Repository<>();
+        repository.save(new CsvEntity("file","version", "creation"));
     }
 }
