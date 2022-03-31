@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spo.presenter.AnalyzerPresenter">
+<AnchorPane prefHeight="400.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spo.view.AnalyzerView">
    <children>
       <TextArea fx:id="InputTextField" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="269.0" />
       <ChoiceBox fx:id="ComboBox" layoutX="74.0" layoutY="223.0" prefWidth="150.0" />

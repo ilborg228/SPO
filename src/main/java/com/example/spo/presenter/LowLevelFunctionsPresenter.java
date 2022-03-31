@@ -1,34 +1,21 @@
 package com.example.spo.presenter;
 
 import com.example.spo.jni.JNI;
-import com.example.spo.view.LowLevelFunctionsView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 public class LowLevelFunctionsPresenter {
-
-    ObservableList<String> ComboBoxList = FXCollections.observableArrayList("OR", "MULTIPLY");
-    @FXML
-    private ChoiceBox<String> ComboBox;
-
-    @FXML
-    private TextField FirstTextField;
-
-    @FXML
-    private Button LaunchButton;
-
-    @FXML
-    private TextField ResultTextField;
-
-    @FXML
-    private TextField SecondTextField;
-
-    public void initialize() {
-        ComboBox.setItems(ComboBoxList);
-        LaunchButton.setOnAction(actionEvent -> LowLevelFunctionsView.LaunchButton(FirstTextField,SecondTextField,ResultTextField,ComboBox));
+    public static void LaunchButton(TextField FirstTextField, TextField SecondTextField, TextField ResultTextField, ChoiceBox comboBox){
+        JNI jni = new JNI();
+        if (!FirstTextField.getText().equals("") && !SecondTextField.getText().equals("")) {
+            if (comboBox.getValue() == "OR") {
+                ResultTextField.setText(Integer.toString(jni.OR(Integer.parseInt(FirstTextField.getText()),
+                        Integer.parseInt(SecondTextField.getText()))));
+            } else if (comboBox.getValue() == "MULTIPLY") {
+                ResultTextField.setText(Integer.toString(jni.MULTIPLY(Integer.parseInt(FirstTextField.getText()),
+                        Integer.parseInt(SecondTextField.getText()))));
+            }
+        }
     }
 }

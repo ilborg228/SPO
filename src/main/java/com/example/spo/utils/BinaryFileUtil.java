@@ -1,6 +1,8 @@
 package com.example.spo.utils;
 
 import com.example.spo.model.Binary;
+import com.example.spo.presenter.InputPresenter;
+import javafx.scene.control.TextArea;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -43,5 +45,35 @@ public class BinaryFileUtil implements FileUtil<Binary>{
             //TODO
             e.printStackTrace();
         }
+    }
+
+    public void add(InputPresenter inputPresenter, TextArea ResultTextField, List<Binary> openedBinaryFile){
+        Binary element = new Binary();
+        element.setLogin(inputPresenter.getFirstField());
+        element.setHashcode(Long.parseLong(inputPresenter.getSecondField()));
+        element.setEmail(inputPresenter.getThirdField());
+        if(element.getLogin() != null && element.getHashcode() != null &&
+                element.getEmail() != null) {
+            openedBinaryFile.add(element);
+            String out = "№|Логин|Хэш-код пароля|email\n";
+            for (int i = 0; i < openedBinaryFile.size(); i++) {
+                Binary openedFileElement = openedBinaryFile.get(i);
+                int Fixer = i + 1;
+                out = out + Fixer + "|" + openedFileElement.getLogin() + "|" + openedFileElement.getHashcode() + "|" +
+                        openedFileElement.getEmail() + "\n";
+            }
+            ResultTextField.setText(out);
+        }
+    }
+    public void delete(Integer deleteThisNumber, TextArea ResultTextField, List<Binary> openedBinaryFile){
+        openedBinaryFile.remove(deleteThisNumber);
+        String out = "№|Логин|Хэш-код пароля|email\n";
+        for (int i = 0; i < openedBinaryFile.size(); i++) {
+            Binary openedFileElement = openedBinaryFile.get(i);
+            int Fixer = i + 1;
+            out = out + Fixer + "|" + openedFileElement.getLogin() + "|" + openedFileElement.getHashcode() + "|" +
+                    openedFileElement.getEmail() + "\n";
+        }
+        ResultTextField.setText(out);
     }
 }

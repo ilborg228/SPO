@@ -1,34 +1,41 @@
 package com.example.spo.presenter;
 
-import com.example.spo.view.InputView;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
 public class InputPresenter {
+    private String FirstField;
+    private String SecondField;
+    private String ThirdField;
 
-    private InputView inputView;
-
-    public InputView getInputView() {
-        return inputView;
+    public String getFirstField() {
+        return FirstField;
     }
 
-    @FXML
-    private TextField FieldOne;
+    public void setFirstField(String firstField) {
+        FirstField = firstField;
+    }
 
-    @FXML
-    private TextField FieldThree;
+    public String getSecondField() {
+        return SecondField;
+    }
 
-    @FXML
-    private TextField FieldTwo;
+    public void setSecondField(String secondField) {
+        SecondField = secondField;
+    }
 
-    @FXML
-    private Button OKButton;
+    public String getThirdField() {
+        return ThirdField;
+    }
 
-    public void initialize() {
-        inputView = new InputView();
-        OKButton.setOnAction(actionEvent -> inputView.OKButton(FieldOne,FieldTwo,FieldThree));
+    public void setThirdField(String thirdField) {
+        ThirdField = thirdField;
+    }
+
+    public void OKButton(TextField FieldOne, TextField FieldTwo, TextField FieldThree){
+        if(!FieldOne.getText().equals("") && !FieldTwo.getText().equals("") && !FieldThree.getText().equals("")){
+            setFirstField(FieldOne.getText());
+            setSecondField(FieldTwo.getText());
+            setThirdField(FieldThree.getText());
+        }
     }
 }

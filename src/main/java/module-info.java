@@ -10,8 +10,8 @@ module com.example.spo {
 
     opens com.example.spo to javafx.fxml;
     exports com.example.spo;
-    exports com.example.spo.presenter;
-    opens com.example.spo.presenter to javafx.fxml;
+    exports com.example.spo.view;
+    opens com.example.spo.view to javafx.fxml;
     exports com.example.spo.utils;
     opens com.example.spo.utils to javafx.fxml,javafx.controls;
     opens com.example.spo.model to javafx.fxml;

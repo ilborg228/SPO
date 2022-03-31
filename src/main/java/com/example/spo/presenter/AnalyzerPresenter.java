@@ -1,32 +1,58 @@
 package com.example.spo.presenter;
 
-import com.example.spo.view.AnalyzerView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import com.example.spo.model.MyCode;
+import com.example.spo.analyzer.ForAnalyzer;
+import com.example.spo.analyzer.ForCompiler;
+import com.example.spo.analyzer.IfAnalyzer;
+import com.example.spo.analyzer.IfCompiler;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.util.Objects;
+
 public class AnalyzerPresenter {
 
-    ObservableList<String> ComboBoxList = FXCollections.observableArrayList("IF", "FOR");
-    @FXML
-    private ChoiceBox<String> ComboBox;
+    private static Integer value = 0;
 
-    @FXML
-    private TextArea InputTextField;
+    public static void comboboxAction(TextArea inputTextField, ChoiceBox<String> comboBox)  {
+        if (comboBox.getValue() == "IF") {
+            inputTextField.setText("if(5<9){int b;}");
+        } else if (comboBox.getValue() == "FOR") {
+            inputTextField.setText("for(int i=0;i<8;i++){}");
+        }
+    }
 
-    @FXML
-    private Button LaunchButton;
+    public static void launchButtonAction(ChoiceBox<String> ComboBox,
+                                          TextArea InputTextField, TextField ResultTextField) {
+        MyCode myCode = null;
+        if (Objects.equals(ComboBox.getValue(), "IF")) {
+            try {
+                myCode = IfAnalyzer.getTargetCode(InputTextField.getText());
+                int i = IfCompiler.execute(myCode,value);
+                value++;
+                if (i == 0) {
+                    ResultTextField.setText(myCode.getCondition());
+                } else if (i == 1) {
+                    ResultTextField.setText("!" + myCode.getCondition());
+                } else {
+                    ResultTextField.setText("Никакое условие не выполняется.");
+                }
+            } catch (Exception e) {
+                ResultTextField.setText("Ошибка в коде");
+            }
+        } else if (Objects.equals(ComboBox.getValue(), "FOR")) {
+            try {
+                myCode = ForAnalyzer.getTargetCode(InputTextField.getText());
+                int i = ForCompiler.execute(myCode,value);
+                value++;
+                ResultTextField.setText("Цикл выполнился: " + i + " раз");
+            } catch (Exception e) {
+                ResultTextField.setText("Ошибка в коде");
+            }
+        }
+    }
 
-    @FXML
-    private TextField ResultTextField;
-
-    public void initialize() {
-        ComboBox.setItems(ComboBoxList);
-        ComboBox.setOnAction(actionEvent -> AnalyzerView.comboboxAction(InputTextField, ComboBox));
-        LaunchButton.setOnAction(actionEvent -> AnalyzerView.launchButtonAction(ComboBox,InputTextField,ResultTextField));
+    public static void launchButtonAction() {
     }
 }

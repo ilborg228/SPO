@@ -1,41 +1,32 @@
 package com.example.spo.view;
 
+import com.example.spo.presenter.InputPresenter;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class InputView {
-    private String FirstField;
-    private String SecondField;
-    private String ThirdField;
 
-    public String getFirstField() {
-        return FirstField;
+    private InputPresenter inputPresenter;
+
+    public InputPresenter getInputPresenter() {
+        return inputPresenter;
     }
 
-    public void setFirstField(String firstField) {
-        FirstField = firstField;
-    }
+    @FXML
+    private TextField FieldOne;
 
-    public String getSecondField() {
-        return SecondField;
-    }
+    @FXML
+    private TextField FieldThree;
 
-    public void setSecondField(String secondField) {
-        SecondField = secondField;
-    }
+    @FXML
+    private TextField FieldTwo;
 
-    public String getThirdField() {
-        return ThirdField;
-    }
+    @FXML
+    private Button OKButton;
 
-    public void setThirdField(String thirdField) {
-        ThirdField = thirdField;
-    }
-
-    public void OKButton(TextField FieldOne, TextField FieldTwo, TextField FieldThree){
-        if(!FieldOne.getText().equals("") && !FieldTwo.getText().equals("") && !FieldThree.getText().equals("")){
-            setFirstField(FieldOne.getText());
-            setSecondField(FieldTwo.getText());
-            setThirdField(FieldThree.getText());
-        }
+    public void initialize() {
+        inputPresenter = new InputPresenter();
+        OKButton.setOnAction(actionEvent -> inputPresenter.OKButton(FieldOne,FieldTwo,FieldThree));
     }
 }

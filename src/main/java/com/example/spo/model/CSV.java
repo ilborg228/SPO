@@ -1,5 +1,12 @@
 package com.example.spo.model;
 
+import com.example.spo.presenter.InputPresenter;
+import com.example.spo.utils.CsvFileUtil;
+import javafx.scene.control.TextArea;
+
+import java.io.IOException;
+import java.util.List;
+
 public class CSV{
 
     /**
@@ -37,6 +44,26 @@ public class CSV{
 
     public void setCreation(String creation) {
         this.creation = creation;
+    }
+
+    public static List<CSV> open(String path){
+        CsvFileUtil csvFileUtil = new CsvFileUtil();
+        return csvFileUtil.open(path);
+    }
+
+    public static void save(List<CSV> elements, String path) throws IOException {
+        CsvFileUtil csvFileUtil = new CsvFileUtil();
+        csvFileUtil.save(elements,path);
+    }
+
+    public static void add(InputPresenter inputPresenter, TextArea ResultTextField, List<CSV> openedCSVFile){
+        CsvFileUtil csvFileUtil = new CsvFileUtil();
+        csvFileUtil.add(inputPresenter, ResultTextField, openedCSVFile);
+    }
+
+    public static void delete(int deleteThisNumber,TextArea ResultTextField,List<CSV> openedCSVFile){
+        CsvFileUtil csvFileUtil = new CsvFileUtil();
+        csvFileUtil.delete(deleteThisNumber, ResultTextField, openedCSVFile);
     }
 
     @Override

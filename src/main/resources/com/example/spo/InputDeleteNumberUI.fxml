@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="101.0" prefWidth="236.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spo.presenter.InputDeleteNumberPresenter">
+<AnchorPane prefHeight="101.0" prefWidth="236.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spo.view.InputDeleteNumberView">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Введите номер удаляемого элемента:" />
       <TextField fx:id="FirstField" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="208.0" />

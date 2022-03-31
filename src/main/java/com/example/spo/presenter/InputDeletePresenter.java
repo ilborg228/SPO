@@ -1,8 +1,8 @@
-package com.example.spo.view;
+package com.example.spo.presenter;
 
 import javafx.scene.control.TextField;
 
-public class InputDeleteView {
+public class InputDeletePresenter {
     private int Number;
 
     public int getNumber() {
