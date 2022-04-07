@@ -1,5 +1,6 @@
 package com.example.spo;
 
+import com.example.spo.presenter.MainPresenter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,6 +15,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 720, 64);
         stage.setTitle("SPO Java Program");
         stage.setScene(scene);
+        MainPresenter.Launch(fxmlLoader.getController());
         stage.show();
     }
 

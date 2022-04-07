@@ -1,6 +1,7 @@
 package com.example.spo.presenter;
 
 import com.example.spo.HelloApplication;
+import com.example.spo.view.MainView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -20,6 +21,12 @@ public class MainPresenter {
             e.printStackTrace();
         }
     }
+    public static void Launch(MainView mainView){
+        mainView.getAuthor_Button().setOnAction(actionEvent -> MainPresenter.AuthorsButtonAction());
+        mainView.getC_Button().setOnAction(actionEvent -> MainPresenter.CButton());
+        mainView.getFile_Button().setOnAction(actionEvent -> MainPresenter.FileButton());
+        mainView.getAnalyze_Button().setOnAction(actionEvent -> MainPresenter.AnalyzerButton());
+    }
     public static void CButton(){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LowLevelFunctionsUI.fxml"));
@@ -27,6 +34,7 @@ public class MainPresenter {
             Stage stage = new Stage();
             stage.setTitle("Low Level Functions");
             stage.setScene(scene);
+            LowLevelFunctionsPresenter.Launch(fxmlLoader.getController());
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,6 +47,7 @@ public class MainPresenter {
             Stage stage = new Stage();
             stage.setTitle("File Handler");
             stage.setScene(scene);
+            FilePresenter.Launch(fxmlLoader.getController());
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,6 +60,7 @@ public class MainPresenter {
             Stage stage = new Stage();
             stage.setTitle("Analyzer");
             stage.setScene(scene);
+            AnalyzerPresenter.Launch(fxmlLoader.getController());
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

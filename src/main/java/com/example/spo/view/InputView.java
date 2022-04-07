@@ -7,10 +7,30 @@ import javafx.scene.control.TextField;
 
 public class InputView {
 
+    public void setInputPresenter(InputPresenter inputPresenter) {
+        this.inputPresenter = inputPresenter;
+    }
+
     private InputPresenter inputPresenter;
 
     public InputPresenter getInputPresenter() {
         return inputPresenter;
+    }
+
+    public TextField getFieldOne() {
+        return FieldOne;
+    }
+
+    public TextField getFieldThree() {
+        return FieldThree;
+    }
+
+    public TextField getFieldTwo() {
+        return FieldTwo;
+    }
+
+    public Button getOKButton() {
+        return OKButton;
     }
 
     @FXML
@@ -26,7 +46,5 @@ public class InputView {
     private Button OKButton;
 
     public void initialize() {
-        inputPresenter = new InputPresenter();
-        OKButton.setOnAction(actionEvent -> inputPresenter.OKButton(FieldOne,FieldTwo,FieldThree));
     }
 }

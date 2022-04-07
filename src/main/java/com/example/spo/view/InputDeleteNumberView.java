@@ -7,10 +7,26 @@ import javafx.scene.control.TextField;
 
 public class InputDeleteNumberView {
 
+    public void setInputDeletePresenter(InputDeletePresenter inputDeletePresenter) {
+        this.inputDeletePresenter = inputDeletePresenter;
+    }
+
     private InputDeletePresenter inputDeletePresenter;
 
     public InputDeletePresenter getInputDeleteView() {
         return inputDeletePresenter;
+    }
+
+    public InputDeletePresenter getInputDeletePresenter() {
+        return inputDeletePresenter;
+    }
+
+    public TextField getFirstField() {
+        return FirstField;
+    }
+
+    public Button getOKButton() {
+        return OKButton;
     }
 
     @FXML
@@ -20,7 +36,5 @@ public class InputDeleteNumberView {
     private Button OKButton;
 
     public void initialize() {
-        inputDeletePresenter = new InputDeletePresenter();
-        OKButton.setOnAction(actionEvent -> inputDeletePresenter.OKButton(FirstField));
     }
 }

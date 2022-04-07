@@ -1,6 +1,5 @@
 package com.example.spo.view;
 
-import com.example.spo.presenter.MainPresenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
@@ -9,19 +8,31 @@ public class MainView {
     @FXML
     private Button Analyze_Button;
 
+    public Button getAnalyze_Button(){
+        return  this.Analyze_Button;
+    }
+
     @FXML
     private Button Author_Button;
+
+    public Button getAuthor_Button(){
+        return  this.Author_Button;
+    }
 
     @FXML
     private Button C_Button;
 
+    public Button getC_Button(){
+        return  this.C_Button;
+    }
+
     @FXML
     private Button File_Button;
 
+    public Button getFile_Button(){
+        return  this.File_Button;
+    }
+
     public void initialize() {
-        Author_Button.setOnAction(actionEvent -> MainPresenter.AuthorsButtonAction());
-        C_Button.setOnAction(actionEvent -> MainPresenter.CButton());
-        File_Button.setOnAction(actionEvent -> MainPresenter.FileButton());
-        Analyze_Button.setOnAction(actionEvent -> MainPresenter.AnalyzerButton());
     }
 }

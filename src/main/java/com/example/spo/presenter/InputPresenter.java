@@ -1,5 +1,6 @@
 package com.example.spo.presenter;
 
+import com.example.spo.view.InputView;
 import javafx.scene.control.TextField;
 
 public class InputPresenter {
@@ -37,5 +38,10 @@ public class InputPresenter {
             setSecondField(FieldTwo.getText());
             setThirdField(FieldThree.getText());
         }
+    }
+    public static void Launch(InputView inputView){
+        inputView.setInputPresenter(new InputPresenter());
+        inputView.getOKButton().setOnAction(actionEvent -> inputView.getInputPresenter().OKButton(inputView.getFieldOne(),
+                inputView.getFieldTwo(), inputView.getFieldThree()));
     }
 }

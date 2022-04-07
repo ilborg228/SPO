@@ -1,5 +1,6 @@
 package com.example.spo.presenter;
 
+import com.example.spo.view.InputDeleteNumberView;
 import javafx.scene.control.TextField;
 
 public class InputDeletePresenter {
@@ -17,5 +18,10 @@ public class InputDeletePresenter {
         if(!FirstField.getText().equals("")){
             setNumber(Integer.parseInt(FirstField.getText()));
         }
+    }
+    public static void Launch(InputDeleteNumberView inputDeleteNumberView){
+        inputDeleteNumberView.setInputDeletePresenter(new InputDeletePresenter());
+        inputDeleteNumberView.getOKButton().setOnAction(actionEvent ->
+                inputDeleteNumberView.getInputDeletePresenter().OKButton(inputDeleteNumberView.getFirstField()));
     }
 }

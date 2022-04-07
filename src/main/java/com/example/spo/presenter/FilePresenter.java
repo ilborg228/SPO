@@ -3,8 +3,12 @@ package com.example.spo.presenter;
 import com.example.spo.HelloApplication;
 import com.example.spo.model.Binary;
 import com.example.spo.model.CSV;
+import com.example.spo.view.FileView;
 import com.example.spo.view.InputDeleteNumberView;
 import com.example.spo.view.InputView;
+import com.example.spo.view.MainView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
@@ -19,6 +23,16 @@ import java.util.List;
 public class FilePresenter {
     private List<CSV> openedCSVFile;
     private List<Binary> openedBinaryFile;
+
+    public static void Launch(FileView fileView){
+        ObservableList<String> ComboBoxList = FXCollections.observableArrayList("CSV", "Binary");
+        fileView.getComboBox().setItems(ComboBoxList);
+        FilePresenter filePresenter = new FilePresenter();
+        fileView.getOpenButton().setOnAction(actionEvent -> filePresenter.OpenButton(fileView.getComboBox(), fileView.getResultTextField()));
+        fileView.getAddButton().setOnAction(actionEvent -> filePresenter.AddButton(fileView.getComboBox(), fileView.getResultTextField()));
+        fileView.getDeleteButton().setOnAction(actionEvent -> filePresenter.DeleteButton(fileView.getComboBox(), fileView.getResultTextField()));
+        fileView.getSaveButton().setOnAction(actionEvent -> filePresenter.SaveButton(fileView.getComboBox()));
+    }
 
     public void OpenButton(ChoiceBox ComboBox, TextArea ResultTextField){
         FileChooser fileChooser = new FileChooser();
@@ -64,6 +78,7 @@ public class FilePresenter {
                 stage.setTitle("Input");
                 stage.setScene(scene);
                 InputView inputView = fxmlLoader.getController();
+                InputPresenter.Launch(inputView);
                 InputPresenter inputPresenter = inputView.getInputPresenter();
                 stage.showAndWait();
                 if (ComboBox.getValue() == "CSV") {
@@ -86,6 +101,7 @@ public class FilePresenter {
                 stage.setTitle("Input");
                 stage.setScene(scene);
                 InputDeleteNumberView inputDeleteNumberView = fxmlLoader.getController();
+                InputDeletePresenter.Launch(inputDeleteNumberView);
                 InputDeletePresenter inputDeletePresenter= inputDeleteNumberView.getInputDeleteView();
                 stage.showAndWait();
                 int deleteThisNumber = inputDeletePresenter.getNumber() - 1;

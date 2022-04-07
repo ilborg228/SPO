@@ -10,7 +10,26 @@ import javafx.scene.control.TextField;
 
 public class LowLevelFunctionsView {
 
-    ObservableList<String> ComboBoxList = FXCollections.observableArrayList("OR", "MULTIPLY");
+    public ChoiceBox<String> getComboBox() {
+        return ComboBox;
+    }
+
+    public TextField getFirstTextField() {
+        return FirstTextField;
+    }
+
+    public Button getLaunchButton() {
+        return LaunchButton;
+    }
+
+    public TextField getResultTextField() {
+        return ResultTextField;
+    }
+
+    public TextField getSecondTextField() {
+        return SecondTextField;
+    }
+
     @FXML
     private ChoiceBox<String> ComboBox;
 
@@ -27,7 +46,5 @@ public class LowLevelFunctionsView {
     private TextField SecondTextField;
 
     public void initialize() {
-        ComboBox.setItems(ComboBoxList);
-        LaunchButton.setOnAction(actionEvent -> LowLevelFunctionsPresenter.LaunchButton(FirstTextField,SecondTextField,ResultTextField,ComboBox));
     }
 }

@@ -5,6 +5,9 @@ import com.example.spo.analyzer.ForAnalyzer;
 import com.example.spo.analyzer.ForCompiler;
 import com.example.spo.analyzer.IfAnalyzer;
 import com.example.spo.analyzer.IfCompiler;
+import com.example.spo.view.AnalyzerView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -53,6 +56,11 @@ public class AnalyzerPresenter {
         }
     }
 
-    public static void launchButtonAction() {
+    public static void Launch(AnalyzerView analyzerView) {
+        ObservableList<String> ComboBoxList = FXCollections.observableArrayList("IF", "FOR");
+        analyzerView.getComboBox().setItems(ComboBoxList);
+        analyzerView.getComboBox().setOnAction(actionEvent -> AnalyzerPresenter.comboboxAction(analyzerView.getInputTextField(), analyzerView.getComboBox()));
+        analyzerView.getLaunchButton().setOnAction(actionEvent -> AnalyzerPresenter.launchButtonAction(analyzerView.getComboBox(),
+                analyzerView.getInputTextField(), analyzerView.getResultTextField()));
     }
 }

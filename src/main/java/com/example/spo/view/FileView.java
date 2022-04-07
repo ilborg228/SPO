@@ -9,7 +9,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 
 public class FileView {
-    ObservableList<String> ComboBoxList = FXCollections.observableArrayList("CSV", "Binary");
 
     @FXML
     private ChoiceBox<String> ComboBox;
@@ -29,12 +28,30 @@ public class FileView {
     @FXML
     private TextArea ResultTextField;
 
+    public ChoiceBox<String> getComboBox() {
+        return ComboBox;
+    }
+
+    public Button getOpenButton() {
+        return OpenButton;
+    }
+
+    public Button getSaveButton() {
+        return SaveButton;
+    }
+
+    public Button getDeleteButton() {
+        return DeleteButton;
+    }
+
+    public Button getAddButton() {
+        return AddButton;
+    }
+
+    public TextArea getResultTextField() {
+        return ResultTextField;
+    }
+
     public void initialize() {
-        ComboBox.setItems(ComboBoxList);
-        FilePresenter filePresenter = new FilePresenter();
-        OpenButton.setOnAction(actionEvent -> filePresenter.OpenButton(ComboBox,ResultTextField));
-        AddButton.setOnAction(actionEvent -> filePresenter.AddButton(ComboBox,ResultTextField));
-        DeleteButton.setOnAction(actionEvent -> filePresenter.DeleteButton(ComboBox,ResultTextField));
-        SaveButton.setOnAction(actionEvent -> filePresenter.SaveButton(ComboBox));
     }
 }

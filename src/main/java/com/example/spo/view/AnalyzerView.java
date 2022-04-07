@@ -11,7 +11,22 @@ import javafx.scene.control.TextField;
 
 public class AnalyzerView {
 
-    ObservableList<String> ComboBoxList = FXCollections.observableArrayList("IF", "FOR");
+    public ChoiceBox<String> getComboBox() {
+        return ComboBox;
+    }
+
+    public TextArea getInputTextField() {
+        return InputTextField;
+    }
+
+    public Button getLaunchButton() {
+        return LaunchButton;
+    }
+
+    public TextField getResultTextField() {
+        return ResultTextField;
+    }
+
     @FXML
     private ChoiceBox<String> ComboBox;
 
@@ -25,8 +40,5 @@ public class AnalyzerView {
     private TextField ResultTextField;
 
     public void initialize() {
-        ComboBox.setItems(ComboBoxList);
-        ComboBox.setOnAction(actionEvent -> AnalyzerPresenter.comboboxAction(InputTextField, ComboBox));
-        LaunchButton.setOnAction(actionEvent -> AnalyzerPresenter.launchButtonAction(ComboBox,InputTextField,ResultTextField));
     }
 }

@@ -1,6 +1,9 @@
 package com.example.spo.presenter;
 
 import com.example.spo.jni.JNI;
+import com.example.spo.view.LowLevelFunctionsView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -17,5 +20,12 @@ public class LowLevelFunctionsPresenter {
                         Integer.parseInt(SecondTextField.getText()))));
             }
         }
+    }
+    public static void Launch(LowLevelFunctionsView lowLevelFunctionsView){
+        ObservableList<String> ComboBoxList = FXCollections.observableArrayList("OR", "MULTIPLY");
+        lowLevelFunctionsView.getComboBox().setItems(ComboBoxList);
+        lowLevelFunctionsView.getLaunchButton().setOnAction(actionEvent ->
+                LowLevelFunctionsPresenter.LaunchButton(lowLevelFunctionsView.getFirstTextField(),
+                        lowLevelFunctionsView.getSecondTextField(), lowLevelFunctionsView.getResultTextField(), lowLevelFunctionsView.getComboBox()));
     }
 }
