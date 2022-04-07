@@ -62,24 +62,26 @@ public class Binary {
         this.email = email;
     }
 
-    public static List<Binary> open(String path) {
+    public List<Binary> open(String path) {
         BinaryFileUtil binaryFileUtil = new BinaryFileUtil();
         return binaryFileUtil.open(path);
     }
 
-    public static void save(List<Binary> elements, String path) throws IOException {
+    public void save(List<Binary> elements, String path) throws IOException {
         BinaryFileUtil binaryFileUtil = new BinaryFileUtil();
         binaryFileUtil.save(elements, path);
     }
 
-    public static void add(InputPresenter inputPresenter, TextArea ResultTextField, List<Binary> openedBinaryFile) {
+    public void add(InputPresenter inputPresenter, TextArea ResultTextField, List<Binary> openedBinaryFile) {
         BinaryFileUtil binaryFileUtil = new BinaryFileUtil();
         binaryFileUtil.add(inputPresenter, ResultTextField, openedBinaryFile);
     }
-    public static void delete(int deleteThisNumber,TextArea ResultTextField,List<Binary> openedBinaryFile){
+
+    public void delete(int deleteThisNumber,TextArea ResultTextField,List<Binary> openedBinaryFile){
         BinaryFileUtil binaryFileUtil = new BinaryFileUtil();
         binaryFileUtil.delete(deleteThisNumber,ResultTextField,openedBinaryFile);
     }
+
     @Override
     public String toString() {
         return "Binary{" +

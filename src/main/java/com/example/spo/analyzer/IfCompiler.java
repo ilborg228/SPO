@@ -43,7 +43,7 @@ public class IfCompiler {
                 "    }\n" +
                 "}\n";
 
-        Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode.toString());
+        Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
         Runnable runner = (Runnable) aClass.newInstance();
         runner.run();
 

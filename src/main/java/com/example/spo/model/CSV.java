@@ -46,22 +46,22 @@ public class CSV{
         this.creation = creation;
     }
 
-    public static List<CSV> open(String path){
+    public List<CSV> open(String path){
         CsvFileUtil csvFileUtil = new CsvFileUtil();
         return csvFileUtil.open(path);
     }
 
-    public static void save(List<CSV> elements, String path) throws IOException {
+    public void save(List<CSV> elements, String path) throws IOException {
         CsvFileUtil csvFileUtil = new CsvFileUtil();
         csvFileUtil.save(elements,path);
     }
 
-    public static void add(InputPresenter inputPresenter, TextArea ResultTextField, List<CSV> openedCSVFile){
+    public void add(InputPresenter inputPresenter, TextArea ResultTextField, List<CSV> openedCSVFile){
         CsvFileUtil csvFileUtil = new CsvFileUtil();
         csvFileUtil.add(inputPresenter, ResultTextField, openedCSVFile);
     }
 
-    public static void delete(int deleteThisNumber,TextArea ResultTextField,List<CSV> openedCSVFile){
+    public void delete(int deleteThisNumber,TextArea ResultTextField,List<CSV> openedCSVFile){
         CsvFileUtil csvFileUtil = new CsvFileUtil();
         csvFileUtil.delete(deleteThisNumber, ResultTextField, openedCSVFile);
     }
