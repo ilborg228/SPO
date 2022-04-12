@@ -3,6 +3,7 @@ package com.example.spo.utils;
 import com.example.spo.model.CSV;
 import com.example.spo.presenter.InputPresenter;
 import com.example.spo.view.InputView;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 
 
@@ -56,7 +57,7 @@ public class CsvFileUtil implements FileUtil<CSV>{
         }
     }
 
-    public void add(InputPresenter inputPresenter, TextArea ResultTextField, List<CSV> openedCSVFile){
+    public void add(InputPresenter inputPresenter, TableView tableView, List<CSV> openedCSVFile){
         CSV element = new CSV();
         element.setFileName(inputPresenter.getFirstField());
         element.setVersion(inputPresenter.getSecondField());
@@ -64,25 +65,19 @@ public class CsvFileUtil implements FileUtil<CSV>{
         if(element.getFileName() != null && element.getVersion() != null &&
                 element.getCreation() != null){
             openedCSVFile.add(element);
-            String out = "№|Имя файла|Версия файла|Дата создания\n";
             for (int i = 0; i < openedCSVFile.size(); i++) {
                 CSV openedFileElement = openedCSVFile.get(i);
                 int Fixer = i + 1;
-                out = out + Fixer + "|" + openedFileElement.getFileName() + "|" + openedFileElement.getVersion() + "|" +
-                        openedFileElement.getCreation() + "\n";
+                tableView.getColumns().addAll(Fixer,openedFileElement.getFileName(),openedFileElement.getVersion(),openedFileElement.getCreation());
             }
-            ResultTextField.setText(out);
         }
     }
-    public void delete(int deleteThisNumber,TextArea ResultTextField,List<CSV> openedCSVFile){
+    public void delete(int deleteThisNumber,TableView tableView,List<CSV> openedCSVFile){
         openedCSVFile.remove(deleteThisNumber);
-        String out = "№|Имя файла|Версия файла|Дата создания\n";
         for (int i = 0; i < openedCSVFile.size(); i++) {
             CSV openedFileElement = openedCSVFile.get(i);
             int Fixer = i + 1;
-            out = out + Fixer + "|" + openedFileElement.getFileName() + "|" + openedFileElement.getVersion() + "|" +
-                    openedFileElement.getCreation() + "\n";
+            tableView.getColumns().addAll(Fixer,openedFileElement.getFileName(),openedFileElement.getVersion(),openedFileElement.getCreation());
         }
-        ResultTextField.setText(out);
     }
 }

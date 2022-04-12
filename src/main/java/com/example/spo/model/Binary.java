@@ -3,6 +3,7 @@ package com.example.spo.model;
 import com.example.spo.presenter.InputPresenter;
 import com.example.spo.utils.BinaryFileUtil;
 import com.example.spo.utils.CsvFileUtil;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 
 import java.io.IOException;
@@ -72,14 +73,14 @@ public class Binary {
         binaryFileUtil.save(elements, path);
     }
 
-    public void add(InputPresenter inputPresenter, TextArea ResultTextField, List<Binary> openedBinaryFile) {
+    public void add(InputPresenter inputPresenter, TableView tableView, List<Binary> openedBinaryFile) {
         BinaryFileUtil binaryFileUtil = new BinaryFileUtil();
-        binaryFileUtil.add(inputPresenter, ResultTextField, openedBinaryFile);
+        binaryFileUtil.add(inputPresenter, tableView, openedBinaryFile);
     }
 
-    public void delete(int deleteThisNumber,TextArea ResultTextField,List<Binary> openedBinaryFile){
+    public void delete(int deleteThisNumber,TableView tableView,List<Binary> openedBinaryFile){
         BinaryFileUtil binaryFileUtil = new BinaryFileUtil();
-        binaryFileUtil.delete(deleteThisNumber,ResultTextField,openedBinaryFile);
+        binaryFileUtil.delete(deleteThisNumber,tableView,openedBinaryFile);
     }
 
     @Override

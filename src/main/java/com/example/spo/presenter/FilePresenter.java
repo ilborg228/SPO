@@ -1,7 +1,6 @@
 package com.example.spo.presenter;
 
 import com.example.spo.HelloApplication;
-import com.example.spo.model.Binary;
 import com.example.spo.model.CSV;
 import com.example.spo.view.FileView;
 import com.example.spo.view.InputDeleteNumberView;
@@ -11,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -29,13 +29,13 @@ public class FilePresenter {
         CSV csv = new CSV();
         FilePresenterBinary filePresenterBinary = new FilePresenterBinary();
         filePresenterBinary.initialize();
-        fileView.getOpenButton().setOnAction(actionEvent -> filePresenter.OpenButton(fileView.getComboBox(), fileView.getResultTextField(),filePresenterBinary,csv));
-        fileView.getAddButton().setOnAction(actionEvent -> filePresenter.AddButton(fileView.getComboBox(), fileView.getResultTextField(),filePresenterBinary,csv));
-        fileView.getDeleteButton().setOnAction(actionEvent -> filePresenter.DeleteButton(fileView.getComboBox(), fileView.getResultTextField(),filePresenterBinary,csv));
+        fileView.getOpenButton().setOnAction(actionEvent -> filePresenter.OpenButton(fileView.getComboBox(), fileView.getGridTable(),filePresenterBinary,csv));
+        fileView.getAddButton().setOnAction(actionEvent -> filePresenter.AddButton(fileView.getComboBox(), fileView.getGridTable(),filePresenterBinary,csv));
+        fileView.getDeleteButton().setOnAction(actionEvent -> filePresenter.DeleteButton(fileView.getComboBox(), fileView.getGridTable(),filePresenterBinary,csv));
         fileView.getSaveButton().setOnAction(actionEvent -> filePresenter.SaveButton(fileView.getComboBox(),filePresenterBinary,csv));
     }
 
-    public void OpenButton(ChoiceBox ComboBox, TextArea ResultTextField,FilePresenterBinary filePresenterBinary,CSV csv) {
+    public void OpenButton(ChoiceBox ComboBox, TableView tableView, FilePresenterBinary filePresenterBinary, CSV csv) {
         FileChooser fileChooser = new FileChooser();
         if (ComboBox.getValue() == "CSV") {
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
@@ -43,21 +43,18 @@ public class FilePresenter {
             File file = fileChooser.showOpenDialog(new Stage());
             if (file != null) {
                 openedCSVFile = csv.open(file.getPath());
-                String out = "№|Имя файла|Версия файла|Дата создания\n";
                 for (int i = 0; i < openedCSVFile.size(); i++) {
                     CSV openedFileElement = openedCSVFile.get(i);
                     int Fixer = i + 1;
-                    out = out + Fixer + "|" + openedFileElement.getFileName() + "|" + openedFileElement.getVersion() + "|" +
-                            openedFileElement.getCreation() + "\n";
+                    tableView.getColumns().addAll(Fixer,openedFileElement.getFileName(),openedFileElement.getVersion(),openedFileElement.getCreation());
                 }
-                ResultTextField.setText(out);
             }
         } else if (ComboBox.getValue() == "Binary") {
-            filePresenterBinary.OpenButton(ComboBox, ResultTextField);
+            filePresenterBinary.OpenButton(ComboBox, tableView);
         }
     }
 
-    public void AddButton(ChoiceBox ComboBox, TextArea ResultTextField,FilePresenterBinary filePresenterBinary,CSV csv){
+    public void AddButton(ChoiceBox ComboBox, TableView tableView,FilePresenterBinary filePresenterBinary,CSV csv){
         if (ComboBox.getValue() == "CSV") {
             if (openedCSVFile != null) {
                 try {
@@ -71,19 +68,19 @@ public class FilePresenter {
                     InputPresenter inputPresenter = inputView.getInputPresenter();
                     stage.showAndWait();
                     if (ComboBox.getValue() == "CSV") {
-                        csv.add(inputPresenter,ResultTextField,openedCSVFile);
+                        csv.add(inputPresenter,tableView,openedCSVFile);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         } else if (ComboBox.getValue() == "Binary") {
-            filePresenterBinary.AddButton(ComboBox,ResultTextField);
+            filePresenterBinary.AddButton(ComboBox,tableView);
         }
 
     }
 
-    public void DeleteButton(ChoiceBox ComboBox, TextArea ResultTextField,FilePresenterBinary filePresenterBinary,CSV csv){
+    public void DeleteButton(ChoiceBox ComboBox, TableView tableView,FilePresenterBinary filePresenterBinary,CSV csv){
         if (ComboBox.getValue() == "CSV") {
             if ( openedCSVFile != null) {
                 try {
@@ -99,7 +96,7 @@ public class FilePresenter {
                     int deleteThisNumber = inputDeletePresenter.getNumber() - 1;
                     if(deleteThisNumber != -1){
                         if (ComboBox.getValue() == "CSV") {
-                            csv.delete(deleteThisNumber,ResultTextField,openedCSVFile);
+                            csv.delete(deleteThisNumber,tableView,openedCSVFile);
                         }
                     }
                 } catch (IOException e) {
@@ -107,7 +104,7 @@ public class FilePresenter {
                 }
             }
         } else if (ComboBox.getValue() == "Binary") {
-            filePresenterBinary.DeleteButton(ComboBox,ResultTextField);
+            filePresenterBinary.DeleteButton(ComboBox,tableView);
         }
 
     }

@@ -2,6 +2,7 @@ package com.example.spo.utils;
 
 import com.example.spo.model.Binary;
 import com.example.spo.presenter.InputPresenter;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 
 import java.io.*;
@@ -47,7 +48,7 @@ public class BinaryFileUtil implements FileUtil<Binary>{
         }
     }
 
-    public void add(InputPresenter inputPresenter, TextArea ResultTextField, List<Binary> openedBinaryFile){
+    public void add(InputPresenter inputPresenter, TableView tableView, List<Binary> openedBinaryFile){
         Binary element = new Binary();
         element.setLogin(inputPresenter.getFirstField());
         element.setHashcode(Long.parseLong(inputPresenter.getSecondField()));
@@ -55,25 +56,22 @@ public class BinaryFileUtil implements FileUtil<Binary>{
         if(element.getLogin() != null && element.getHashcode() != null &&
                 element.getEmail() != null) {
             openedBinaryFile.add(element);
-            String out = "№|Логин|Хэш-код пароля|email\n";
             for (int i = 0; i < openedBinaryFile.size(); i++) {
                 Binary openedFileElement = openedBinaryFile.get(i);
                 int Fixer = i + 1;
-                out = out + Fixer + "|" + openedFileElement.getLogin() + "|" + openedFileElement.getHashcode() + "|" +
-                        openedFileElement.getEmail() + "\n";
+                tableView.getColumns().addAll(Fixer,openedFileElement.getLogin(),openedFileElement.getHashcode(),openedFileElement.getEmail());
             }
-            ResultTextField.setText(out);
         }
     }
-    public void delete(Integer deleteThisNumber, TextArea ResultTextField, List<Binary> openedBinaryFile){
-        openedBinaryFile.remove(deleteThisNumber);
-        String out = "№|Логин|Хэш-код пароля|email\n";
-        for (int i = 0; i < openedBinaryFile.size(); i++) {
-            Binary openedFileElement = openedBinaryFile.get(i);
-            int Fixer = i + 1;
-            out = out + Fixer + "|" + openedFileElement.getLogin() + "|" + openedFileElement.getHashcode() + "|" +
-                    openedFileElement.getEmail() + "\n";
+    public void delete(Integer deleteThisNumber, TableView tableView, List<Binary> openedBinaryFile){
+        int deleteNumber = deleteThisNumber - 1;
+        if (deleteNumber != -1){
+            openedBinaryFile.remove(deleteNumber);
+            for (int i = 0; i < openedBinaryFile.size(); i++) {
+                Binary openedFileElement = openedBinaryFile.get(i);
+                int Fixer = i + 1;
+                tableView.getColumns().addAll(Fixer,openedFileElement.getLogin(),openedFileElement.getHashcode(),openedFileElement.getEmail());
+            }
         }
-        ResultTextField.setText(out);
     }
 }

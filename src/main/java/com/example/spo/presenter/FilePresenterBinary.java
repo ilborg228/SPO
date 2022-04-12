@@ -7,6 +7,7 @@ import com.example.spo.view.InputView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -23,7 +24,7 @@ public class FilePresenterBinary {
         this.binary = new Binary();
     }
 
-    public void OpenButton(ChoiceBox ComboBox, TextArea ResultTextField){
+    public void OpenButton(ChoiceBox ComboBox, TableView tableView){
         FileChooser fileChooser = new FileChooser();
         if (ComboBox.getValue() == "Binary") {
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Binary files (*.txt)", "*.txt");
@@ -31,19 +32,16 @@ public class FilePresenterBinary {
             File file = fileChooser.showOpenDialog(new Stage());
             if (file != null) {
                 openedBinaryFile = binary.open(file.getPath());
-                String out = "№|Логин|Хэш-код пароля|email\n";
                 for (int i = 0; i < openedBinaryFile.size(); i++) {
                     Binary openedFileElement = openedBinaryFile.get(i);
                     int Fixer = i + 1;
-                    out = out + Fixer + "|" + openedFileElement.getLogin() + "|" + openedFileElement.getHashcode() + "|" +
-                            openedFileElement.getEmail() + "\n";
+                    tableView.getColumns().addAll(Fixer,openedFileElement.getLogin(),openedFileElement.getHashcode(),openedFileElement.getEmail());
                 }
-                ResultTextField.setText(out);
             }
         }
     }
 
-    public void AddButton(ChoiceBox ComboBox, TextArea ResultTextField){
+    public void AddButton(ChoiceBox ComboBox, TableView tableView){
         if (openedBinaryFile != null) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("InputUI.fxml"));
@@ -56,7 +54,7 @@ public class FilePresenterBinary {
                 InputPresenter inputPresenter = inputView.getInputPresenter();
                 stage.showAndWait();
                 if (ComboBox.getValue() == "Binary" && isNumeric(inputPresenter.getSecondField())) {
-                    binary.add(inputPresenter,ResultTextField,openedBinaryFile);
+                    binary.add(inputPresenter,tableView,openedBinaryFile);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -64,7 +62,7 @@ public class FilePresenterBinary {
         }
     }
 
-    public void DeleteButton(ChoiceBox ComboBox, TextArea ResultTextField){
+    public void DeleteButton(ChoiceBox ComboBox, TableView tableView){
         if (openedBinaryFile != null) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("InputDeleteNumberUI.fxml"));
@@ -76,11 +74,9 @@ public class FilePresenterBinary {
                 InputDeletePresenter.Launch(inputDeleteNumberView);
                 InputDeletePresenter inputDeletePresenter= inputDeleteNumberView.getInputDeleteView();
                 stage.showAndWait();
-                int deleteThisNumber = inputDeletePresenter.getNumber() - 1;
-                if(deleteThisNumber != -1){
-                    if (ComboBox.getValue() == "Binary") {
-                        binary.delete(deleteThisNumber,ResultTextField,openedBinaryFile);
-                    }
+                int deleteThisNumber = inputDeletePresenter.getNumber();
+                if (ComboBox.getValue() == "Binary") {
+                    binary.delete(deleteThisNumber,tableView,openedBinaryFile);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

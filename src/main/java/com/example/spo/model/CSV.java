@@ -2,6 +2,7 @@ package com.example.spo.model;
 
 import com.example.spo.presenter.InputPresenter;
 import com.example.spo.utils.CsvFileUtil;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 
 import java.io.IOException;
@@ -56,14 +57,14 @@ public class CSV{
         csvFileUtil.save(elements,path);
     }
 
-    public void add(InputPresenter inputPresenter, TextArea ResultTextField, List<CSV> openedCSVFile){
+    public void add(InputPresenter inputPresenter, TableView tableView, List<CSV> openedCSVFile){
         CsvFileUtil csvFileUtil = new CsvFileUtil();
-        csvFileUtil.add(inputPresenter, ResultTextField, openedCSVFile);
+        csvFileUtil.add(inputPresenter, tableView, openedCSVFile);
     }
 
-    public void delete(int deleteThisNumber,TextArea ResultTextField,List<CSV> openedCSVFile){
+    public void delete(int deleteThisNumber,TableView tableView,List<CSV> openedCSVFile){
         CsvFileUtil csvFileUtil = new CsvFileUtil();
-        csvFileUtil.delete(deleteThisNumber, ResultTextField, openedCSVFile);
+        csvFileUtil.delete(deleteThisNumber, tableView, openedCSVFile);
     }
 
     @Override
