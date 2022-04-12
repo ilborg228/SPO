@@ -2,24 +2,16 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spo.view.FileView">
+<AnchorPane prefHeight="400.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spo.view.FileView">
    <children>
       <ChoiceBox id="Filetype_Selector" fx:id="ComboBox" layoutX="14.0" layoutY="14.0" prefWidth="150.0" />
       <Button fx:id="OpenButton" layoutX="14.0" layoutY="48.0" mnemonicParsing="false" text="Открыть" />
       <Button fx:id="SaveButton" layoutX="244.0" layoutY="48.0" mnemonicParsing="false" text="Сохранить" />
       <Button fx:id="AddButton" layoutX="89.0" layoutY="48.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Добавить" />
       <Button fx:id="DeleteButton" layoutX="173.0" layoutY="48.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Удалить" />
-      <TableView fx:id="GridTable" layoutX="14.0" layoutY="100.0" prefHeight="288.0" prefWidth="305.0">
-        <columns>
-          <TableColumn fx:id="Column1" prefWidth="20.0" text="№" />
-          <TableColumn fx:id="Column2" prefWidth="83.0" text="First Field" />
-            <TableColumn fx:id="Column3" prefWidth="101.0" text="Second Field" />
-            <TableColumn fx:id="Column4" prefWidth="100.0" text="Third Column" />
-        </columns>
-      </TableView>
+      <TableView fx:id="GridTable" layoutX="14.0" layoutY="88.0" prefHeight="299.0" prefWidth="305.0" />
    </children>
 </AnchorPane>

@@ -3,8 +3,10 @@ package com.example.spo.utils;
 import com.example.spo.model.CSV;
 import com.example.spo.presenter.InputPresenter;
 import com.example.spo.view.InputView;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 
 import java.io.*;
@@ -64,20 +66,48 @@ public class CsvFileUtil implements FileUtil<CSV>{
         element.setCreation(inputPresenter.getThirdField());
         if(element.getFileName() != null && element.getVersion() != null &&
                 element.getCreation() != null){
+            TableColumn<CSV,String> FirstField = new TableColumn<>("First Field");
+            TableColumn<CSV,String> SecondField = new TableColumn<>("Second Field");
+            TableColumn<CSV,String> ThirdField = new TableColumn<>("Third Field");
+            FirstField.setCellValueFactory(
+                    new PropertyValueFactory<>("fileName")
+            );
+            SecondField.setCellValueFactory(
+                    new PropertyValueFactory<>("version")
+            );
+            ThirdField.setCellValueFactory(
+                    new PropertyValueFactory<>("creation")
+            );
+            tableView.getItems().clear();
+            tableView.getColumns().clear();
+            tableView.getColumns().addAll(FirstField,SecondField,ThirdField);
             openedCSVFile.add(element);
             for (int i = 0; i < openedCSVFile.size(); i++) {
                 CSV openedFileElement = openedCSVFile.get(i);
-                int Fixer = i + 1;
-                tableView.getColumns().addAll(Fixer,openedFileElement.getFileName(),openedFileElement.getVersion(),openedFileElement.getCreation());
+                tableView.getItems().add(openedFileElement);
             }
         }
     }
     public void delete(int deleteThisNumber,TableView tableView,List<CSV> openedCSVFile){
         openedCSVFile.remove(deleteThisNumber);
+        TableColumn<CSV,String> FirstField = new TableColumn<>("First Field");
+        TableColumn<CSV,String> SecondField = new TableColumn<>("Second Field");
+        TableColumn<CSV,String> ThirdField = new TableColumn<>("Third Field");
+        FirstField.setCellValueFactory(
+                new PropertyValueFactory<>("fileName")
+        );
+        SecondField.setCellValueFactory(
+                new PropertyValueFactory<>("version")
+        );
+        ThirdField.setCellValueFactory(
+                new PropertyValueFactory<>("creation")
+        );
+        tableView.getItems().clear();
+        tableView.getColumns().clear();
+        tableView.getColumns().addAll(FirstField,SecondField,ThirdField);
         for (int i = 0; i < openedCSVFile.size(); i++) {
             CSV openedFileElement = openedCSVFile.get(i);
-            int Fixer = i + 1;
-            tableView.getColumns().addAll(Fixer,openedFileElement.getFileName(),openedFileElement.getVersion(),openedFileElement.getCreation());
+            tableView.getItems().add(openedFileElement);
         }
     }
 }

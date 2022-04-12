@@ -2,8 +2,9 @@ package com.example.spo.utils;
 
 import com.example.spo.model.Binary;
 import com.example.spo.presenter.InputPresenter;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -55,11 +56,26 @@ public class BinaryFileUtil implements FileUtil<Binary>{
         element.setEmail(inputPresenter.getThirdField());
         if(element.getLogin() != null && element.getHashcode() != null &&
                 element.getEmail() != null) {
+            TableColumn<Binary,String> FirstField = new TableColumn<>("First Field");
+            TableColumn<Binary,Long> SecondField = new TableColumn<>("Second Field");
+            TableColumn<Binary,String> ThirdField = new TableColumn<>("Third Field");
+            FirstField.setCellValueFactory(
+                    new PropertyValueFactory<>("login")
+            );
+            SecondField.setCellValueFactory(
+                    new PropertyValueFactory<>("hashcode")
+            );
+            ThirdField.setCellValueFactory(
+                    new PropertyValueFactory<>("email")
+            );
+            tableView.getItems().clear();
+            tableView.getColumns().clear();
+            tableView.getColumns().addAll(FirstField,SecondField,ThirdField);
             openedBinaryFile.add(element);
             for (int i = 0; i < openedBinaryFile.size(); i++) {
                 Binary openedFileElement = openedBinaryFile.get(i);
                 int Fixer = i + 1;
-                tableView.getColumns().addAll(Fixer,openedFileElement.getLogin(),openedFileElement.getHashcode(),openedFileElement.getEmail());
+                tableView.getItems().add(openedFileElement);
             }
         }
     }
@@ -67,10 +83,24 @@ public class BinaryFileUtil implements FileUtil<Binary>{
         int deleteNumber = deleteThisNumber - 1;
         if (deleteNumber != -1){
             openedBinaryFile.remove(deleteNumber);
+            TableColumn<Binary,String> FirstField = new TableColumn<>("First Field");
+            TableColumn<Binary,Long> SecondField = new TableColumn<>("Second Field");
+            TableColumn<Binary,String> ThirdField = new TableColumn<>("Third Field");
+            FirstField.setCellValueFactory(
+                    new PropertyValueFactory<>("login")
+            );
+            SecondField.setCellValueFactory(
+                    new PropertyValueFactory<>("hashcode")
+            );
+            ThirdField.setCellValueFactory(
+                    new PropertyValueFactory<>("email")
+            );
+            tableView.getItems().clear();
+            tableView.getColumns().clear();
+            tableView.getColumns().addAll(FirstField,SecondField,ThirdField);
             for (int i = 0; i < openedBinaryFile.size(); i++) {
                 Binary openedFileElement = openedBinaryFile.get(i);
-                int Fixer = i + 1;
-                tableView.getColumns().addAll(Fixer,openedFileElement.getLogin(),openedFileElement.getHashcode(),openedFileElement.getEmail());
+                tableView.getItems().add(openedFileElement);
             }
         }
     }

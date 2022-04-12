@@ -2,13 +2,16 @@ package com.example.spo.presenter;
 
 import com.example.spo.HelloApplication;
 import com.example.spo.model.Binary;
+import com.example.spo.model.CSV;
 import com.example.spo.view.InputDeleteNumberView;
 import com.example.spo.view.InputView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -31,11 +34,25 @@ public class FilePresenterBinary {
             fileChooser.getExtensionFilters().add(extFilter);
             File file = fileChooser.showOpenDialog(new Stage());
             if (file != null) {
+                TableColumn<Binary,String> FirstField = new TableColumn<>("First Field");
+                TableColumn<Binary,Long> SecondField = new TableColumn<>("Second Field");
+                TableColumn<Binary,String> ThirdField = new TableColumn<>("Third Field");
+                FirstField.setCellValueFactory(
+                        new PropertyValueFactory<>("login")
+                );
+                SecondField.setCellValueFactory(
+                        new PropertyValueFactory<>("hashcode")
+                );
+                ThirdField.setCellValueFactory(
+                        new PropertyValueFactory<>("email")
+                );
+                tableView.getItems().clear();
+                tableView.getColumns().clear();
+                tableView.getColumns().addAll(FirstField,SecondField,ThirdField);
                 openedBinaryFile = binary.open(file.getPath());
                 for (int i = 0; i < openedBinaryFile.size(); i++) {
                     Binary openedFileElement = openedBinaryFile.get(i);
-                    int Fixer = i + 1;
-                    tableView.getColumns().addAll(Fixer,openedFileElement.getLogin(),openedFileElement.getHashcode(),openedFileElement.getEmail());
+                    tableView.getItems().add(openedFileElement);
                 }
             }
         }

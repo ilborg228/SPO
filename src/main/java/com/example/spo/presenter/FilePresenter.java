@@ -10,8 +10,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -22,17 +23,19 @@ import java.util.List;
 public class FilePresenter {
     private List<CSV> openedCSVFile;
 
-    public static void Launch(FileView fileView){
+    public static void Launch(FileView fileView) {
         ObservableList<String> ComboBoxList = FXCollections.observableArrayList("CSV", "Binary");
         fileView.getComboBox().setItems(ComboBoxList);
         FilePresenter filePresenter = new FilePresenter();
         CSV csv = new CSV();
         FilePresenterBinary filePresenterBinary = new FilePresenterBinary();
         filePresenterBinary.initialize();
-        fileView.getOpenButton().setOnAction(actionEvent -> filePresenter.OpenButton(fileView.getComboBox(), fileView.getGridTable(),filePresenterBinary,csv));
-        fileView.getAddButton().setOnAction(actionEvent -> filePresenter.AddButton(fileView.getComboBox(), fileView.getGridTable(),filePresenterBinary,csv));
-        fileView.getDeleteButton().setOnAction(actionEvent -> filePresenter.DeleteButton(fileView.getComboBox(), fileView.getGridTable(),filePresenterBinary,csv));
-        fileView.getSaveButton().setOnAction(actionEvent -> filePresenter.SaveButton(fileView.getComboBox(),filePresenterBinary,csv));
+        TableView tableView = fileView.getGridTable();
+        tableView.setEditable(true);
+        fileView.getOpenButton().setOnAction(actionEvent -> filePresenter.OpenButton(fileView.getComboBox(), tableView, filePresenterBinary, csv));
+        fileView.getAddButton().setOnAction(actionEvent -> filePresenter.AddButton(fileView.getComboBox(), tableView, filePresenterBinary, csv));
+        fileView.getDeleteButton().setOnAction(actionEvent -> filePresenter.DeleteButton(fileView.getComboBox(), tableView, filePresenterBinary, csv));
+        fileView.getSaveButton().setOnAction(actionEvent -> filePresenter.SaveButton(fileView.getComboBox(), filePresenterBinary, csv));
     }
 
     public void OpenButton(ChoiceBox ComboBox, TableView tableView, FilePresenterBinary filePresenterBinary, CSV csv) {
@@ -42,11 +45,25 @@ public class FilePresenter {
             fileChooser.getExtensionFilters().add(extFilter);
             File file = fileChooser.showOpenDialog(new Stage());
             if (file != null) {
+                TableColumn<CSV,String> FirstField = new TableColumn<>("First Field");
+                TableColumn<CSV,String> SecondField = new TableColumn<>("Second Field");
+                TableColumn<CSV,String> ThirdField = new TableColumn<>("Third Field");
+                FirstField.setCellValueFactory(
+                        new PropertyValueFactory<>("fileName")
+                );
+                SecondField.setCellValueFactory(
+                        new PropertyValueFactory<>("version")
+                );
+                ThirdField.setCellValueFactory(
+                        new PropertyValueFactory<>("creation")
+                );
+                tableView.getItems().clear();
+                tableView.getColumns().clear();
+                tableView.getColumns().addAll(FirstField,SecondField,ThirdField);
                 openedCSVFile = csv.open(file.getPath());
                 for (int i = 0; i < openedCSVFile.size(); i++) {
                     CSV openedFileElement = openedCSVFile.get(i);
-                    int Fixer = i + 1;
-                    tableView.getColumns().addAll(Fixer,openedFileElement.getFileName(),openedFileElement.getVersion(),openedFileElement.getCreation());
+                    tableView.getItems().add(openedFileElement);
                 }
             }
         } else if (ComboBox.getValue() == "Binary") {
@@ -106,10 +123,9 @@ public class FilePresenter {
         } else if (ComboBox.getValue() == "Binary") {
             filePresenterBinary.DeleteButton(ComboBox,tableView);
         }
-
     }
 
-    public void SaveButton(ChoiceBox ComboBox,FilePresenterBinary filePresenterBinary,CSV csv){
+    public void SaveButton(ChoiceBox ComboBox, FilePresenterBinary filePresenterBinary, CSV csv) {
         FileChooser fileChooser = new FileChooser();
         try {
             if (ComboBox.getValue() == "CSV") {

@@ -5,20 +5,15 @@ import javafx.scene.control.*;
 
 public class FileView {
 
+
+    @FXML
+    private Button AddButton;
+
     @FXML
     private ChoiceBox<String> ComboBox;
 
     @FXML
-    private TableColumn<?, ?> Column1;
-
-    @FXML
-    private TableColumn<?, ?> Column2;
-
-    @FXML
-    private TableColumn<?, ?> Column3;
-
-    @FXML
-    private TableColumn<?, ?> Column4;
+    private Button DeleteButton;
 
     @FXML
     private Button OpenButton;
@@ -26,18 +21,16 @@ public class FileView {
     @FXML
     private Button SaveButton;
 
-    @FXML
-    private Button DeleteButton;
-
-    @FXML
-    private Button AddButton;
-
-    @FXML
-    private TableView<?> GridTable;
+    public void setGridTable(TableView<?> gridTable) {
+        GridTable = gridTable;
+    }
 
     public TableView<?> getGridTable() {
         return GridTable;
     }
+
+    @FXML
+    private TableView<?> GridTable;
 
     public ChoiceBox<String> getComboBox() {
         return ComboBox;
