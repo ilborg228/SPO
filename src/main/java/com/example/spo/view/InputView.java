@@ -46,6 +46,13 @@ public class InputView {
         return LabelThree;
     }
 
+    public Label getErrorLabel() {
+        return ErrorLabel;
+    }
+
+    @FXML
+    private Label ErrorLabel;
+
     @FXML
     private TextField FieldOne;
 

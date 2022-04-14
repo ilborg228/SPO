@@ -21,10 +21,6 @@ public class FileView {
     @FXML
     private Button SaveButton;
 
-    public void setGridTable(TableView<?> gridTable) {
-        GridTable = gridTable;
-    }
-
     public TableView<?> getGridTable() {
         return GridTable;
     }

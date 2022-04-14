@@ -114,7 +114,7 @@ public class FilePresenter {
                     InputDeletePresenter inputDeletePresenter= inputDeleteNumberView.getInputDeleteView();
                     stage.showAndWait();
                     int deleteThisNumber = inputDeletePresenter.getNumber() - 1;
-                    if(deleteThisNumber != -1){
+                    if(deleteThisNumber != -1 && deleteThisNumber<openedCSVFile.size()){
                         if (ComboBox.getValue() == "CSV") {
                             csv.delete(deleteThisNumber,tableView,openedCSVFile);
                         }

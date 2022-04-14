@@ -81,7 +81,7 @@ public class BinaryFileUtil implements FileUtil<Binary>{
     }
     public void delete(Integer deleteThisNumber, TableView tableView, List<Binary> openedBinaryFile){
         int deleteNumber = deleteThisNumber - 1;
-        if (deleteNumber != -1){
+        if (deleteNumber != -1 && deleteNumber < openedBinaryFile.size()){
             openedBinaryFile.remove(deleteNumber);
             TableColumn<Binary,String> FirstField = new TableColumn<>("First Field");
             TableColumn<Binary,Long> SecondField = new TableColumn<>("Second Field");
