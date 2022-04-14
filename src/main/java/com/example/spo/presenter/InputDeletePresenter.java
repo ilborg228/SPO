@@ -21,7 +21,7 @@ public class InputDeletePresenter {
             setNumber(Integer.parseInt(FirstField.getText()));
         }
         catch (NumberFormatException e){
-            //inputDeleteNumberView.getExceptionTextField().setText("Число введено не корректно");//TODO
+            inputDeleteNumberView.getErrorLabel().setText("Число введено не корректно");
         }
         inputDeleteNumberView.getOKButton().getScene().getWindow().hide();
     }

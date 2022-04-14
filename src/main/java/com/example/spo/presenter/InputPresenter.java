@@ -39,11 +39,11 @@ public class InputPresenter {
     public void OKButton(TextField FieldOne, TextField FieldTwo, TextField FieldThree,InputView inputView){
         boolean ex = false;
         if(inputView.getLabelThree().getText().equals("Creation") && !Pattern.matches(dateRegex, inputView.getFieldThree().getText())) {
-                inputView.getErrorLabel().setText("Дата введена некорректно");//TODO
+                inputView.getErrorLabel().setText("Дата введена некорректно");
                 ex = true;
         }
         if(inputView.getLabelThree().getText().equals("Email") && !Pattern.matches(emailRegex, inputView.getFieldThree().getText())) {
-            inputView.getErrorLabel().setText("Email введен некорректно");//TODO
+            inputView.getErrorLabel().setText("Email введен некорректно");
             ex = true;
         }
 

@@ -3,6 +3,7 @@ package com.example.spo.view;
 import com.example.spo.presenter.InputDeletePresenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class InputDeleteNumberView {
@@ -10,6 +11,13 @@ public class InputDeleteNumberView {
     public void setInputDeletePresenter(InputDeletePresenter inputDeletePresenter) {
         this.inputDeletePresenter = inputDeletePresenter;
     }
+
+    public Label getErrorLabel() {
+        return ErrorLabel;
+    }
+
+    @FXML
+    private Label ErrorLabel;
 
     private InputDeletePresenter inputDeletePresenter;
 
