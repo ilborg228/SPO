@@ -38,8 +38,8 @@ public class AnalyzerPresenter {
                     ResultTextField.setText(myCode.getCondition());
                 } else if (i == 1) {
                     ResultTextField.setText("!" + myCode.getCondition());
-                } else {
-                    ResultTextField.setText("Никакое условие не выполняется.");
+                } else{
+                    ResultTextField.setText("Ошибка в компиляции!");
                 }
             } catch (Exception e) {
                 ResultTextField.setText("Ошибка в коде");
