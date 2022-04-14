@@ -34,9 +34,9 @@ public class FilePresenterBinary {
             fileChooser.getExtensionFilters().add(extFilter);
             File file = fileChooser.showOpenDialog(new Stage());
             if (file != null) {
-                TableColumn<Binary,String> FirstField = new TableColumn<>("First Field");
-                TableColumn<Binary,Long> SecondField = new TableColumn<>("Second Field");
-                TableColumn<Binary,String> ThirdField = new TableColumn<>("Third Field");
+                TableColumn<Binary,String> FirstField = new TableColumn<>("Login");
+                TableColumn<Binary,Long> SecondField = new TableColumn<>("Hashcode");
+                TableColumn<Binary,String> ThirdField = new TableColumn<>("Email");
                 FirstField.setCellValueFactory(
                         new PropertyValueFactory<>("login")
                 );
@@ -67,6 +67,9 @@ public class FilePresenterBinary {
                 stage.setTitle("Input");
                 stage.setScene(scene);
                 InputView inputView = fxmlLoader.getController();
+                inputView.getLabelOne().setText("Login");
+                inputView.getLabelTwo().setText("Hashcode");
+                inputView.getLabelThree().setText("Email");
                 InputPresenter.Launch(inputView);
                 InputPresenter inputPresenter = inputView.getInputPresenter();
                 stage.showAndWait();

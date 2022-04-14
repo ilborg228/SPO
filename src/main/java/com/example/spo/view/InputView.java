@@ -3,6 +3,7 @@ package com.example.spo.view;
 import com.example.spo.presenter.InputPresenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class InputView {
@@ -33,6 +34,18 @@ public class InputView {
         return OKButton;
     }
 
+    public Label getLabelOne() {
+        return LabelOne;
+    }
+
+    public Label getLabelTwo() {
+        return LabelTwo;
+    }
+
+    public Label getLabelThree() {
+        return LabelThree;
+    }
+
     @FXML
     private TextField FieldOne;
 
@@ -41,6 +54,15 @@ public class InputView {
 
     @FXML
     private TextField FieldTwo;
+
+    @FXML
+    private Label LabelOne;
+
+    @FXML
+    private Label LabelTwo;
+
+    @FXML
+    private Label LabelThree;
 
     @FXML
     private Button OKButton;

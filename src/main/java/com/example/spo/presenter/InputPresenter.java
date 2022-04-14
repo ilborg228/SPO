@@ -3,11 +3,15 @@ package com.example.spo.presenter;
 import com.example.spo.view.InputView;
 import javafx.scene.control.TextField;
 
+import java.util.regex.Pattern;
+
 public class InputPresenter {
     private String FirstField;
     private String SecondField;
     private String ThirdField;
 
+    private String dateRegex = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
+    private String emailRegex = "^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\\-+)|([A-Za-z0-9]+\\.+)|([A-Za-z0-9]+\\++))*[A-Za-z0-9]+@((\\w+\\-+)|(\\w+\\.))*\\w{1,63}\\.[a-zA-Z]{1,6})$";
     public String getFirstField() {
         return FirstField;
     }
@@ -32,8 +36,18 @@ public class InputPresenter {
         ThirdField = thirdField;
     }
 
-    public void OKButton(TextField FieldOne, TextField FieldTwo, TextField FieldThree){
-        if(!FieldOne.getText().equals("") && !FieldTwo.getText().equals("") && !FieldThree.getText().equals("")){
+    public void OKButton(TextField FieldOne, TextField FieldTwo, TextField FieldThree,InputView inputView){
+        boolean ex = false;
+        if(inputView.getLabelThree().getText().equals("Creation") && !Pattern.matches(dateRegex, inputView.getLabelThree().getText())) {
+                //inputView.getExceptionTextField().setText("Дата введена некорректно");//TODO
+                ex = true;
+        }
+        if(inputView.getLabelThree().getText().equals("Email") && !Pattern.matches(emailRegex, inputView.getLabelThree().getText())) {
+            //inputView.getExceptionTextField().setText("Email введен некорректно");//TODO
+            ex = true;
+        }
+
+        if(!ex && !FieldOne.getText().equals("") && !FieldTwo.getText().equals("") && !FieldThree.getText().equals("")){
             setFirstField(FieldOne.getText());
             setSecondField(FieldTwo.getText());
             setThirdField(FieldThree.getText());
@@ -42,6 +56,6 @@ public class InputPresenter {
     public static void Launch(InputView inputView){
         inputView.setInputPresenter(new InputPresenter());
         inputView.getOKButton().setOnAction(actionEvent -> inputView.getInputPresenter().OKButton(inputView.getFieldOne(),
-                inputView.getFieldTwo(), inputView.getFieldThree()));
+                inputView.getFieldTwo(), inputView.getFieldThree(), inputView));
     }
 }

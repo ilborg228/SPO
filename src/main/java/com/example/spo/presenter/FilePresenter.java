@@ -45,9 +45,9 @@ public class FilePresenter {
             fileChooser.getExtensionFilters().add(extFilter);
             File file = fileChooser.showOpenDialog(new Stage());
             if (file != null) {
-                TableColumn<CSV,String> FirstField = new TableColumn<>("First Field");
-                TableColumn<CSV,String> SecondField = new TableColumn<>("Second Field");
-                TableColumn<CSV,String> ThirdField = new TableColumn<>("Third Field");
+                TableColumn<CSV,String> FirstField = new TableColumn<>("File name");
+                TableColumn<CSV,String> SecondField = new TableColumn<>("Version");
+                TableColumn<CSV,String> ThirdField = new TableColumn<>("Creation");
                 FirstField.setCellValueFactory(
                         new PropertyValueFactory<>("fileName")
                 );
@@ -81,6 +81,9 @@ public class FilePresenter {
                     stage.setTitle("Input");
                     stage.setScene(scene);
                     InputView inputView = fxmlLoader.getController();
+                    inputView.getLabelOne().setText("File name");
+                    inputView.getLabelTwo().setText("Version");
+                    inputView.getLabelThree().setText("Creation");
                     InputPresenter.Launch(inputView);
                     InputPresenter inputPresenter = inputView.getInputPresenter();
                     stage.showAndWait();

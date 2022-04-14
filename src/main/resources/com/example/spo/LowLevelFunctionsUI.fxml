@@ -14,7 +14,7 @@
       <Label layoutX="437.0" layoutY="6.0" text="Второе число:" />
       <ChoiceBox fx:id="ComboBox" layoutX="225.0" layoutY="28.0" prefWidth="150.0" />
       <Button fx:id="LaunchButton" layoutX="274.0" layoutY="71.0" mnemonicParsing="false" text="Запуск" />
-      <TextField fx:id="ResultTextField" layoutX="226.0" layoutY="128.0" />
+      <Label fx:id="ResultTextField" layoutX="226.0" layoutY="128.0" />
       <Label layoutX="272.0" layoutY="111.0" text="Результат:" />
    </children>
 </AnchorPane>
