@@ -7,12 +7,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spo.view.AnalyzerView">
+<AnchorPane prefHeight="400.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spo.view.AnalyzerView">
    <children>
       <TextArea fx:id="InputTextField" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="269.0" />
       <ChoiceBox fx:id="ComboBox" layoutX="74.0" layoutY="223.0" prefWidth="150.0" />
       <Button fx:id="LaunchButton" layoutX="123.0" layoutY="259.0" mnemonicParsing="false" text="Запуск" />
-      <TextField fx:id="ResultTextField" layoutX="77.0" layoutY="331.0" />
+      <TextField fx:id="ResultTextField" editable="false" layoutX="5.0" layoutY="331.0" prefHeight="25.0" prefWidth="284.0" />
       <Label layoutX="7.0" layoutY="307.0" text="Выполняемое условие или кол-во проходов цикла:" />
    </children>
 </AnchorPane>

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="171.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spo.view.LowLevelFunctionsView">
+<AnchorPane prefHeight="171.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spo.view.LowLevelFunctionsView">
    <children>
       <TextField fx:id="FirstTextField" layoutX="14.0" layoutY="28.0" />
       <TextField fx:id="SecondTextField" layoutX="437.0" layoutY="28.0" />
@@ -14,7 +14,7 @@
       <Label layoutX="437.0" layoutY="6.0" text="Второе число:" />
       <ChoiceBox fx:id="ComboBox" layoutX="225.0" layoutY="28.0" prefWidth="150.0" />
       <Button fx:id="LaunchButton" layoutX="274.0" layoutY="71.0" mnemonicParsing="false" text="Запуск" />
-      <TextField fx:id="ResultTextField" layoutX="226.0" layoutY="128.0" />
+      <TextField fx:id="ResultTextField" editable="false" layoutX="226.0" layoutY="128.0" />
       <Label layoutX="272.0" layoutY="111.0" text="Результат:" />
    </children>
 </AnchorPane>
