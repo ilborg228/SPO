@@ -38,11 +38,11 @@ public class InputPresenter {
 
     public void OKButton(TextField FieldOne, TextField FieldTwo, TextField FieldThree,InputView inputView){
         boolean ex = false;
-        if(inputView.getLabelThree().getText().equals("Creation") && !Pattern.matches(dateRegex, inputView.getLabelThree().getText())) {
+        if(inputView.getLabelThree().getText().equals("Creation") && !Pattern.matches(dateRegex, inputView.getFieldThree().getText())) {
                 //inputView.getExceptionTextField().setText("Дата введена некорректно");//TODO
                 ex = true;
         }
-        if(inputView.getLabelThree().getText().equals("Email") && !Pattern.matches(emailRegex, inputView.getLabelThree().getText())) {
+        if(inputView.getLabelThree().getText().equals("Email") && !Pattern.matches(emailRegex, inputView.getFieldThree().getText())) {
             //inputView.getExceptionTextField().setText("Email введен некорректно");//TODO
             ex = true;
         }
@@ -52,6 +52,7 @@ public class InputPresenter {
             setSecondField(FieldTwo.getText());
             setThirdField(FieldThree.getText());
         }
+        inputView.getLabelThree().getScene().getWindow().hide();
     }
     public static void Launch(InputView inputView){
         inputView.setInputPresenter(new InputPresenter());

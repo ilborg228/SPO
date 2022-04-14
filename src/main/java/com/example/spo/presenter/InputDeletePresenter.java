@@ -23,6 +23,7 @@ public class InputDeletePresenter {
         catch (NumberFormatException e){
             //inputDeleteNumberView.getExceptionTextField().setText("Число введено не корректно");//TODO
         }
+        inputDeleteNumberView.getOKButton().getScene().getWindow().hide();
     }
     public static void Launch(InputDeleteNumberView inputDeleteNumberView){
         inputDeleteNumberView.setInputDeletePresenter(new InputDeletePresenter());
