@@ -1,5 +1,7 @@
 package com.example.spo.presenter;
 
+import com.example.spo.exception.InvalidDateException;
+import com.example.spo.exception.InvalidEmailException;
 import com.example.spo.view.InputView;
 import javafx.scene.control.TextField;
 
@@ -37,23 +39,32 @@ public class InputPresenter {
     }
 
     public void OKButton(TextField FieldOne, TextField FieldTwo, TextField FieldThree,InputView inputView){
-        boolean ex = false;
+
+        try {
+            check(inputView);
+
+            if(!FieldOne.getText().equals("") || !FieldTwo.getText().equals("") || !FieldThree.getText().equals("")){
+                setFirstField(FieldOne.getText());
+                setSecondField(FieldTwo.getText());
+                setThirdField(FieldThree.getText());
+            }
+
+            inputView.getLabelThree().getScene().getWindow().hide();
+
+        } catch (InvalidDateException | InvalidEmailException e) {
+            inputView.getErrorLabel().setText(e.getMessage());
+        }
+    }
+
+    private void check(InputView inputView) throws InvalidDateException, InvalidEmailException {
         if(inputView.getLabelThree().getText().equals("Creation") && !Pattern.matches(dateRegex, inputView.getFieldThree().getText())) {
-                inputView.getErrorLabel().setText("Дата введена некорректно");
-                ex = true;
+            throw new InvalidDateException();
         }
         if(inputView.getLabelThree().getText().equals("Email") && !Pattern.matches(emailRegex, inputView.getFieldThree().getText())) {
-            inputView.getErrorLabel().setText("Email введен некорректно");
-            ex = true;
+            throw new InvalidEmailException();
         }
-
-        if(!ex && !FieldOne.getText().equals("") && !FieldTwo.getText().equals("") && !FieldThree.getText().equals("")){
-            setFirstField(FieldOne.getText());
-            setSecondField(FieldTwo.getText());
-            setThirdField(FieldThree.getText());
-        }
-        inputView.getLabelThree().getScene().getWindow().hide();
     }
+
     public static void Launch(InputView inputView){
         inputView.setInputPresenter(new InputPresenter());
         inputView.getOKButton().setOnAction(actionEvent -> inputView.getInputPresenter().OKButton(inputView.getFieldOne(),

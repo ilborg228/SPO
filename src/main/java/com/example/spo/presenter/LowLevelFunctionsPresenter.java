@@ -38,6 +38,7 @@ public class LowLevelFunctionsPresenter {
             }
         }
     }
+
     public static void Launch(LowLevelFunctionsView lowLevelFunctionsView){
         LowLevelFunctionsPresenter.lowLevelFunctionsView = lowLevelFunctionsView;
         ObservableList<String> ComboBoxList = FXCollections.observableArrayList("OR", "MULTIPLY");

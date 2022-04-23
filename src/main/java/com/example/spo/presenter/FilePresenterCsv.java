@@ -20,22 +20,22 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class FilePresenter {
+public class FilePresenterCsv {
     private List<CSV> openedCSVFile;
 
     public static void Launch(FileView fileView) {
         ObservableList<String> ComboBoxList = FXCollections.observableArrayList("CSV", "Binary");
         fileView.getComboBox().setItems(ComboBoxList);
-        FilePresenter filePresenter = new FilePresenter();
+        FilePresenterCsv filePresenterCsv = new FilePresenterCsv();
         CSV csv = new CSV();
         FilePresenterBinary filePresenterBinary = new FilePresenterBinary();
         filePresenterBinary.initialize();
         TableView tableView = fileView.getGridTable();
         tableView.setEditable(true);
-        fileView.getOpenButton().setOnAction(actionEvent -> filePresenter.OpenButton(fileView.getComboBox(), tableView, filePresenterBinary, csv));
-        fileView.getAddButton().setOnAction(actionEvent -> filePresenter.AddButton(fileView.getComboBox(), tableView, filePresenterBinary, csv));
-        fileView.getDeleteButton().setOnAction(actionEvent -> filePresenter.DeleteButton(fileView.getComboBox(), tableView, filePresenterBinary, csv));
-        fileView.getSaveButton().setOnAction(actionEvent -> filePresenter.SaveButton(fileView.getComboBox(), filePresenterBinary, csv));
+        fileView.getOpenButton().setOnAction(actionEvent -> filePresenterCsv.OpenButton(fileView.getComboBox(), tableView, filePresenterBinary, csv));
+        fileView.getAddButton().setOnAction(actionEvent -> filePresenterCsv.AddButton(fileView.getComboBox(), tableView, filePresenterBinary, csv));
+        fileView.getDeleteButton().setOnAction(actionEvent -> filePresenterCsv.DeleteButton(fileView.getComboBox(), tableView, filePresenterBinary, csv));
+        fileView.getSaveButton().setOnAction(actionEvent -> filePresenterCsv.SaveButton(fileView.getComboBox(), filePresenterBinary, csv));
     }
 
     public void OpenButton(ChoiceBox ComboBox, TableView tableView, FilePresenterBinary filePresenterBinary, CSV csv) {

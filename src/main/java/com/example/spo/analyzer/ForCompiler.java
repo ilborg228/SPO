@@ -1,5 +1,6 @@
 package com.example.spo.analyzer;
 
+import com.example.spo.exception.InvalidCodeFormatException;
 import com.example.spo.model.MyCode;
 import net.openhft.compiler.CompilerUtils;
 
@@ -8,7 +9,7 @@ import java.io.FileInputStream;
 
 public class ForCompiler{
 
-    public static int execute(MyCode code,int value) throws Exception {
+    public static int execute(MyCode code,int value) throws InvalidCodeFormatException {
         String className = "com.example.spo.utils.MyClass"+value;
         StringBuilder javaCode = new StringBuilder();
         javaCode.append("package com.example.spo.utils;\n");
@@ -28,11 +29,17 @@ public class ForCompiler{
         javaCode.append("\n}");
         javaCode.append("\n}");
 
-        Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode.toString());
-        Runnable runner = (Runnable) aClass.newInstance();
-        runner.run();
-        DataInputStream dos = new DataInputStream(new FileInputStream("data1.txt"));
+        try {
+            Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode.toString());
+            Runnable runner = (Runnable) aClass.newInstance();
+            runner.run();
+            DataInputStream dos = new DataInputStream(new FileInputStream("data1.txt"));
 
-        return dos.readInt();
+            return dos.readInt();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            throw new InvalidCodeFormatException();
+        }
     }
 }

@@ -47,7 +47,7 @@ public class MainPresenter {
             Stage stage = new Stage();
             stage.setTitle("File Handler");
             stage.setScene(scene);
-            FilePresenter.Launch(fxmlLoader.getController());
+            FilePresenterCsv.Launch(fxmlLoader.getController());
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

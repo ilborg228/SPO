@@ -19,4 +19,5 @@ module com.example.spo {
     exports com.example.spo.model;
     exports com.example.spo.analyzer;
     opens com.example.spo.analyzer to javafx.controls, javafx.fxml;
+    exports com.example.spo.exception;
 }

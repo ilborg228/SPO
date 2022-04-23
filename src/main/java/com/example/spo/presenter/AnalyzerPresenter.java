@@ -1,5 +1,6 @@
 package com.example.spo.presenter;
 
+import com.example.spo.exception.InvalidCodeFormatException;
 import com.example.spo.model.MyCode;
 import com.example.spo.analyzer.ForAnalyzer;
 import com.example.spo.analyzer.ForCompiler;
@@ -19,16 +20,16 @@ public class AnalyzerPresenter {
     private static Integer value = 0;
 
     public static void comboboxAction(TextArea inputTextField, ChoiceBox<String> comboBox)  {
-        if (comboBox.getValue() == "IF") {
+        if (Objects.equals(comboBox.getValue(), "IF")) {
             inputTextField.setText("if(5<9){int b;}");
-        } else if (comboBox.getValue() == "FOR") {
+        } else if (Objects.equals(comboBox.getValue(), "FOR")) {
             inputTextField.setText("for(int i=0;i<8;i++){}");
         }
     }
 
     public static void launchButtonAction(ChoiceBox<String> ComboBox,
                                           TextArea InputTextField, TextField ResultTextField) {
-        MyCode myCode = null;
+        MyCode myCode;
         if (Objects.equals(ComboBox.getValue(), "IF")) {
             try {
                 myCode = IfAnalyzer.getTargetCode(InputTextField.getText());
@@ -41,8 +42,8 @@ public class AnalyzerPresenter {
                 } else{
                     ResultTextField.setText("Ошибка в компиляции!");
                 }
-            } catch (Exception e) {
-                ResultTextField.setText("Ошибка в коде");
+            } catch (InvalidCodeFormatException e) {
+                ResultTextField.setText(e.getMessage());
             }
         } else if (Objects.equals(ComboBox.getValue(), "FOR")) {
             try {
@@ -50,8 +51,8 @@ public class AnalyzerPresenter {
                 int i = ForCompiler.execute(myCode,value);
                 value++;
                 ResultTextField.setText("Цикл выполнился: " + i + " раз");
-            } catch (Exception e) {
-                ResultTextField.setText("Ошибка в коде");
+            } catch (InvalidCodeFormatException e) {
+                ResultTextField.setText(e.getMessage());
             }
         }
     }
