@@ -2,8 +2,15 @@ package com.example.spo.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 
 public class MainView {
+    public TextArea getLogger() {
+        return logger;
+    }
+
+    @FXML
+    private TextArea logger;
 
     @FXML
     private Button Analyze_Button;

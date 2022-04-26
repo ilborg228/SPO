@@ -57,7 +57,7 @@ public class AnalyzerPresenter {
         }
     }
 
-    public static void Launch(AnalyzerView analyzerView) {
+    public static void Launch(AnalyzerView analyzerView,TextArea Logger) {
         ObservableList<String> ComboBoxList = FXCollections.observableArrayList("IF", "FOR");
         analyzerView.getComboBox().setItems(ComboBoxList);
         analyzerView.getComboBox().setOnAction(actionEvent -> AnalyzerPresenter.comboboxAction(analyzerView.getInputTextField(), analyzerView.getComboBox()));

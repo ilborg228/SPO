@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -23,7 +24,7 @@ import java.util.List;
 public class FilePresenterCsv {
     private List<CSV> openedCSVFile;
 
-    public static void Launch(FileView fileView) {
+    public static void Launch(FileView fileView, TextArea Logger) {
         ObservableList<String> ComboBoxList = FXCollections.observableArrayList("CSV", "Binary");
         fileView.getComboBox().setItems(ComboBoxList);
         FilePresenterCsv filePresenterCsv = new FilePresenterCsv();
