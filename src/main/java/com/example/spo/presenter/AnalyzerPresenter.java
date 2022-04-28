@@ -44,9 +44,9 @@ public class AnalyzerPresenter {
                 int i = IfCompiler.execute(myCode, value);
                 value++;
                 if (i == 0) {
-                    ResultTextField.setText(myCode.getCondition());
+                    ResultTextField.setText("Выполнится If");
                 } else if (i == 1) {
-                    ResultTextField.setText("!" + myCode.getCondition());
+                    ResultTextField.setText("Выполнится Else");
                 } else {
                     ResultTextField.setText("Ошибка в компиляции!");
                 }
